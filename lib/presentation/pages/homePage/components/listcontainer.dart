@@ -1,0 +1,126 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../values/constants.dart';
+
+class ListContainer extends StatelessWidget {
+  final String number;
+  final String? duration;
+  final String? title;
+  final bool isDone;
+  final String imgUrl;
+  final String startTime;
+  final String endTime;
+  final String durationInHr;
+  final String contestUrl;
+  const ListContainer({
+    Key? key,
+    required this.number,
+    required this.durationInHr,
+    required this.startTime,
+    required this.endTime,
+    required this.imgUrl,
+    required this.contestUrl,
+    this.duration,
+    this.title,
+    this.isDone = false,
+  }) : super(key: key);
+
+  String utcToLocal(String utc) {
+    return utc;
+    // utc = utc.substring(0, 10) + "T" + utc.substring(11, 19) + ".000Z";
+
+    // var strToDateTime = DateTime.parse(utc);
+    // final convertLocal = strToDateTime.toLocal();
+    // var newFormat = DateFormat("dd-MM-yyyy hh:mm aaa");
+    // String updatedDt = newFormat.format(convertLocal);
+    // return (updatedDt);
+  }
+
+  // ignore: non_constant_identifier_names
+  String duration_to_noramal(String duration) {
+    double hour = double.parse(duration);
+
+    hour = (hour / 3600).floorToDouble();
+    double min = double.parse(duration);
+    min = min % 3600;
+    min = (min / 60).floorToDouble();
+    if (min == 0.0) {
+      return (hour.toString().substring(0, hour.toString().indexOf('.')) +
+          " Hr");
+    }
+
+    return (hour.toString().substring(0, hour.toString().indexOf('.')) +
+        " Hr & " +
+        min.toString().substring(0, min.toString().indexOf('.')) +
+        " Min");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    String starttime = utcToLocal(startTime);
+    String endtime = utcToLocal(endTime);
+    String durationInhour = duration_to_noramal(durationInHr);
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 30),
+      child: InkWell(
+        onTap: () {},
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  number,
+                  style: kHeadingextStyle.copyWith(
+                    color: kTextColor.withOpacity(.15),
+                    fontSize: 32,
+                  ),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * .030,
+                ),
+                SizedBox(
+                  // color: Colors.red,
+                  width: MediaQuery.of(context).size.width * .63,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title.toString(),
+                        style: kSubtitleTextSyle.copyWith(
+                          overflow: TextOverflow.visible,
+                          //fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          height: 1.5,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 2,
+                      ),
+                      Text(
+                        "ends on $endtime",
+                        style: TextStyle(
+                            color: kTextColor.withOpacity(.5),
+                            //fontSize: 13.5,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              // color: Colors.blueAccent,
+              //margin: EdgeInsets.only(left: 2),
+              height: 40,
+              width: 40,
+              child: SvgPicture.asset(imgUrl),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
