@@ -5,7 +5,8 @@ import '../../values/constants.dart';
 import '../notificationPage/notification_screen.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final Function(int)? onNavigateToTab;
+  const HomePage({super.key, this.onNavigateToTab});
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +56,9 @@ class HomePage extends StatelessWidget {
             stops: [0.0, 0.5, 1.0],
           ),
         ),
-        child: const SafeArea(
+        child: SafeArea(
           top: false, // We'll manually pad for AppBar
-          child: HomeBody(),
+          child: HomeBody(onNavigateToTab: onNavigateToTab),
         ),
       ),
     );

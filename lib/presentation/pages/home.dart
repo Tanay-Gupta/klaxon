@@ -17,14 +17,27 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
+  void _onNavigateToTab(int index) {
+  setState(() {
+    _selectedIndex = index;
+  });
+}
 
-  final List<Widget> _tabItems = const [
-    HomePage(),
-    ContestPage(),
-    HackathonPage(),
-    BountyPage(),
-    SettingsPage(),
+late final List<Widget> _tabItems;
+
+@override
+void initState() {
+  super.initState();
+  _tabItems = [
+    HomePage(onNavigateToTab: _onNavigateToTab),
+    const ContestPage(),
+    const HackathonPage(),
+    const BountyPage(),
+    const SettingsPage(),
   ];
+}
+
+
 
   final List<FlashyTabBarItem> _navItems = [
     _buildTabBarItem("assets/icons/home/home_dark_unselected.svg", 'Explore'),

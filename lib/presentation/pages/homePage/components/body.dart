@@ -110,7 +110,9 @@ import 'tab_bar_content.dart';
 import 'trendingAlert.dart';
 
 class HomeBody extends StatefulWidget {
-  const HomeBody({super.key});
+ final Function(int)? onNavigateToTab;
+
+  const HomeBody({super.key, this.onNavigateToTab});
 
   @override
   State<HomeBody> createState() => _HomeBodyState();
@@ -132,7 +134,7 @@ class _HomeBodyState extends State<HomeBody> {
           const SizedBox(height: 16),
 
           // 🏁 Coding Contests Section
-          _buildSectionHeader("Coding Contests", onTap: () {}),
+          _buildSectionHeader("Coding Contests", onTap:  () => widget.onNavigateToTab?.call(1)), // Go to Contests tab),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: DefaultTabController(
@@ -153,13 +155,13 @@ class _HomeBodyState extends State<HomeBody> {
           //const SizedBox(height: 24),
 
           // 🎯 Hackathons Section
-          _buildSectionHeader("Hackathons", onTap: () {}),
+          _buildSectionHeader("Hackathons", onTap: () => widget.onNavigateToTab?.call(2)),// Go to Hackathons tab
           trendingAlertCarouselSlider(context),
 
           const SizedBox(height: 24),
 
           // 🛡️ Bug Bounty Section
-          _buildSectionHeader("Bug Bounty", onTap: () {}),
+          _buildSectionHeader("Bug Bounty", onTap:() => widget.onNavigateToTab?.call(3)),// Go to Bounty tab
           trendingAlertCarouselSlider(context),
 
           const SizedBox(height: 24),
