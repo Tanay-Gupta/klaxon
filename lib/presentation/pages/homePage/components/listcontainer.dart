@@ -42,7 +42,7 @@ class ListContainer extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: const Color(0xff110919),
+        color: kListContainerBGColor,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -54,8 +54,8 @@ class ListContainer extends StatelessWidget {
               child: InkWell(
                 onTap: onContainerTap,
                 borderRadius: BorderRadius.circular(12),
-                splashColor: Colors.white24,
-                highlightColor: Colors.white10,
+                splashColor: kListContainerSplashColor,
+                highlightColor: kListContainerHighlightColor,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: 12,
@@ -105,8 +105,8 @@ class ListContainer extends StatelessWidget {
             child: InkWell(
               onTap: onShareTap,
               borderRadius: BorderRadius.circular(20),
-              splashColor: Colors.white24,
-              highlightColor: Colors.white10,
+              splashColor: kListContainerSplashColor,
+              highlightColor: kListContainerHighlightColor,
               child: const Padding(
                 padding: EdgeInsets.all(12),
                 child: Icon(Icons.share, color: Colors.white70, size: 20),

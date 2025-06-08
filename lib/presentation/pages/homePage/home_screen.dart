@@ -44,18 +44,7 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFF020202), // Top black
-              Color(0xFF2C114A), // Middle purple
-              Color(0xFF030303), // Bottom black
-            ],
-            stops: [0.0, 0.5, 1.0],
-          ),
-        ),
+        decoration: kHomePageBGGradientDecoration,
         child: SafeArea(
           top: false, // We'll manually pad for AppBar
           child: HomeBody(onNavigateToTab: onNavigateToTab),
