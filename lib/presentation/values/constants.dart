@@ -8,6 +8,13 @@ import '../pages/homePage/components/listcontainer.dart';
 const kNavIconTextColor = Colors.white;
 const kNavBackgroundColorDark = Color(0xFF030303);
 const kNavUnselectedIconColor = Color(0xffA6A6A6);
+
+// ----Home Page AppBar Colors
+const kHomePageAppBarColor = Color(0xFF030303);
+const kHomePageAppBarIconColor = Color(0xFFA6A6A6);
+const kHomePageTitleTextPrimaryColor = Colors.white;
+const kHomePageTitleTextSecondaryColor = Color(0xFF904DFE);
+
 //----AppBar Colors
 const kTextColor = Colors.white;
 const kAppbarTitleTextColor = Colors.white;
@@ -19,19 +26,20 @@ const kButtonColor = Color(0xFF8C45FF);
 const kSegmentedTabBGColor = Color(0xff110919);
 const kSegmentedTabSelectedColor = Color(0xff2C114A);
 
-const kBlueColor = Color(0xFF6E8AFA);
-const kBestSellerColor = Color(0xFFFFD073);
-const kGreenColor = Color(0xFF49CC96);
 const kBackgroundColor = Color(0xFF030303);
-const kSecondaryBackgroundColor = Color(0xFFF5F4EF);
-
-
 
 // My Text Styles
 const kAppbarTitleStyle = TextStyle(
   overflow: TextOverflow.ellipsis,
   fontSize: 20,
   color: kAppbarTitleTextColor,
+  fontFamily: "Rubik",
+  fontWeight: FontWeight.bold,
+);
+const kAppbarTitleSecondaryStyle = TextStyle(
+  overflow: TextOverflow.ellipsis,
+  fontSize: 20,
+  color: kHomePageTitleTextSecondaryColor,
   fontFamily: "Rubik",
   fontWeight: FontWeight.bold,
 );
@@ -101,81 +109,72 @@ const livePulseAnimation = 'assets/animations/livePulse.json';
 
 List<ListContainer> dummyData = [
   ListContainer(
-   
     title: "CodeChef Long Challenge",
-  //  durationInHr: "10800", // 3 hours in seconds
+    //  durationInHr: "10800", // 3 hours in seconds
     startTime: "2024-12-01T09:00:00Z",
     endTime: "2024-12-01T12:00:00Z",
     imgUrl: 'assets/icons/codechef.svg',
     contestUrl: 'www.codechef.com',
   ),
   ListContainer(
-   
     title: "CodeForces Round #891",
-  //  durationInHr: "7200", // 2 hours in seconds
+    //  durationInHr: "7200", // 2 hours in seconds
     startTime: "2024-12-02T14:00:00Z",
     endTime: "2024-12-02T16:00:00Z",
     imgUrl: 'assets/icons/codeforces.svg',
     contestUrl: 'www.codeforces.com',
   ),
   ListContainer(
-   
     title: "HackerEarth Coding Challenge",
-  //  durationInHr: "14400", // 4 hours in seconds
+    //  durationInHr: "14400", // 4 hours in seconds
     startTime: "2024-12-03T18:00:00Z",
     endTime: "2024-12-03T22:00:00Z",
     imgUrl: 'assets/icons/hackerearth.svg',
     contestUrl: 'www.hackerearth.com',
   ),
   ListContainer(
-    
     title: "HackerRank Weekly Contest",
-   // durationInHr: "10800", // 3 hours in seconds
+    // durationInHr: "10800", // 3 hours in seconds
     startTime: "2024-12-04T10:00:00Z",
     endTime: "2024-12-04T13:00:00Z",
     imgUrl: 'assets/icons/hackerrank.svg',
     contestUrl: 'www.hackerrank.com',
   ),
   ListContainer(
-   
     title: "LeetCode Biweekly Contest 125",
-   // durationInHr: "5400", // 1.5 hours in seconds
+    // durationInHr: "5400", // 1.5 hours in seconds
     startTime: "2024-12-05T07:30:00Z",
     endTime: "2024-12-05T09:00:00Z",
     imgUrl: 'assets/icons/leetcode.svg',
     contestUrl: 'www.leetcode.com',
   ),
   ListContainer(
-   
     title: "Kick Start Round G",
-  //  durationInHr: "7200", // 2 hours in seconds
+    //  durationInHr: "7200", // 2 hours in seconds
     startTime: "2024-12-06T15:00:00Z",
     endTime: "2024-12-06T17:00:00Z",
     imgUrl: 'assets/icons/google.svg',
     contestUrl: 'www.codingcompetitions.withgoogle.com',
   ),
   ListContainer(
-   
     title: "TopCoder SRM 871",
-  //  durationInHr: "5400", // 1.5 hours in seconds
+    //  durationInHr: "5400", // 1.5 hours in seconds
     startTime: "2024-12-07T20:00:00Z",
     endTime: "2024-12-07T21:30:00Z",
     imgUrl: 'assets/icons/topcoder.svg',
     contestUrl: 'www.topcoder.com',
   ),
   ListContainer(
-  
     title: "AtCoder Beginner Contest 325",
-  //  durationInHr: "7200", // 2 hours in seconds
+    //  durationInHr: "7200", // 2 hours in seconds
     startTime: "2024-12-08T05:00:00Z",
     endTime: "2024-12-08T07:00:00Z",
     imgUrl: 'assets/icons/atcoder.svg',
     contestUrl: 'www.atcoder.jp',
   ),
   ListContainer(
-    
     title: "CS Academy Open Contest",
-  //  durationInHr: "10800", // 3 hours in seconds
+    //  durationInHr: "10800", // 3 hours in seconds
     startTime: "2024-12-09T08:00:00Z",
     endTime: "2024-12-09T11:00:00Z",
     imgUrl: 'assets/icons/csAcademy.svg',

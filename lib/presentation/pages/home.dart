@@ -3,10 +3,7 @@ import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:klaxon/presentation/pages/contests/contest_page.dart';
 import 'package:klaxon/presentation/pages/settings/settings_page.dart';
-
 import '../values/constants.dart';
-import '../widgets/UnderMaintenanceScreen.dart';
-import '../widgets/connectError.dart';
 import 'bounty/bounty_page.dart';
 import 'hackathons/hackathon_page.dart';
 import 'homePage/home_screen.dart';
