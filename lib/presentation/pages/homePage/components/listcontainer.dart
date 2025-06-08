@@ -40,7 +40,7 @@ class ListContainer extends StatelessWidget {
     final endFormatted = _formatFullDateTime(endTime);
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
+      margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
         color: kListContainerBGColor,
         borderRadius: BorderRadius.circular(12),

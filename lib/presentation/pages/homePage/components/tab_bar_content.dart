@@ -26,7 +26,7 @@ class TabBarContent extends StatelessWidget {
       itemCount: 3,
       itemBuilder: (context, index) {
         final contest = contests[index];
-        return ListContainer(
+        return ListContainer( 
           //  durationInHr: contest.durationInHr.toString(),
           startTime: contest.startTime.toIso8601String(),
           endTime: contest.endTime.toString(),

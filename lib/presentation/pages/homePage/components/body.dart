@@ -40,7 +40,7 @@ class _HomeBodyState extends State<HomeBody> {
                   ContestTabBar(width: width),
                   const SizedBox(height: 16),
                   SizedBox(
-                    height: 250, // You can tune this height as needed
+                    height: 230, // You can tune this height as needed
                     child: const TabBarContent(),
                   ),
                 ],
