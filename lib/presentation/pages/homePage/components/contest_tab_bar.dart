@@ -16,7 +16,7 @@ class ContestTabBar extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
       child: ButtonsTabBar(
-        width: width / 2 - 20,
+        width: width / 2 - 16,
         height: 40,
         contentCenter: true,
         backgroundColor: kSegmentedTabSelectedColor,

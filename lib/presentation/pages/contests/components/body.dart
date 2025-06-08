@@ -19,7 +19,7 @@ class ContestBody extends StatelessWidget {
               const SliverToBoxAdapter(
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: 20.0,
+                    horizontal: 16.0,
                     vertical: 5.0,
                   ),
                   child: Center(
@@ -32,7 +32,7 @@ class ContestBody extends StatelessWidget {
               ),
               const SliverToBoxAdapter(
                 child: Padding(
-                  padding: EdgeInsets.all(20.0),
+                  padding: EdgeInsets.all(16.0),
                   child: PlatformGrid(),
                 ),
               ),
@@ -40,14 +40,14 @@ class ContestBody extends StatelessWidget {
                 pinned: true,
                 delegate: ContestSliverTabBarDelegate(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: ContestTabBar(width: width),
                   ),
                 ),
               ),
             ],
         body: const Padding(
-          padding: EdgeInsets.only(left: 20, right: 20, top: 15),
+          padding: EdgeInsets.only(left: 16, right: 16, top: 15),
           child: TabBarContent(),
         ),
       ),

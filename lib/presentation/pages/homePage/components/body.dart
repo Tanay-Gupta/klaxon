@@ -32,7 +32,7 @@ class _HomeBodyState extends State<HomeBody> {
           // 🏁 Coding Contests Section
           _buildSectionHeader("Coding Contests", onTap:  () => widget.onNavigateToTab?.call(1)), // Go to Contests tab),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: DefaultTabController(
               length: 2,
               child: Column(
@@ -68,7 +68,7 @@ class _HomeBodyState extends State<HomeBody> {
 
   Widget _buildSectionHeader(String title, {VoidCallback? onTap}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: [
           Text(title, style: kSubheadingtextStyle),

@@ -22,7 +22,7 @@ class AboutPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
           child: ListView(
             physics: const BouncingScrollPhysics(),
             children: [
