@@ -1,125 +1,125 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:intl/intl.dart';
 import '../../../values/constants.dart';
 
 class ListContainer extends StatelessWidget {
-  final String number;
-  final String? duration;
-  final String? title;
-  final bool isDone;
-  final String imgUrl;
   final String startTime;
   final String endTime;
-  final String durationInHr;
+  final String imgUrl;
   final String contestUrl;
+  final String? title;
+  final bool isUpcoming;
+  final VoidCallback? onShareTap;
+  final VoidCallback? onContainerTap;
+
   const ListContainer({
-    Key? key,
-    required this.number,
-    required this.durationInHr,
+    super.key,
     required this.startTime,
     required this.endTime,
     required this.imgUrl,
     required this.contestUrl,
-    this.duration,
     this.title,
-    this.isDone = false,
-  }) : super(key: key);
+    this.isUpcoming = false,
+    this.onShareTap,
+    this.onContainerTap,
+  });
 
-  String utcToLocal(String utc) {
-    return utc;
-    // utc = utc.substring(0, 10) + "T" + utc.substring(11, 19) + ".000Z";
-
-    // var strToDateTime = DateTime.parse(utc);
-    // final convertLocal = strToDateTime.toLocal();
-    // var newFormat = DateFormat("dd-MM-yyyy hh:mm aaa");
-    // String updatedDt = newFormat.format(convertLocal);
-    // return (updatedDt);
-  }
-
-  // ignore: non_constant_identifier_names
-  String duration_to_noramal(String duration) {
-    double hour = double.parse(duration);
-
-    hour = (hour / 3600).floorToDouble();
-    double min = double.parse(duration);
-    min = min % 3600;
-    min = (min / 60).floorToDouble();
-    if (min == 0.0) {
-      return (hour.toString().substring(0, hour.toString().indexOf('.')) +
-          " Hr");
+  String _formatFullDateTime(String utc) {
+    try {
+      final local = DateTime.parse(utc).toLocal();
+      return DateFormat('dd MMM yyyy, hh:mm a').format(local);
+    } catch (_) {
+      return '';
     }
-
-    return (hour.toString().substring(0, hour.toString().indexOf('.')) +
-        " Hr & " +
-        min.toString().substring(0, min.toString().indexOf('.')) +
-        " Min");
   }
 
   @override
   Widget build(BuildContext context) {
-    String starttime = utcToLocal(startTime);
-    String endtime = utcToLocal(endTime);
-    String durationInhour = duration_to_noramal(durationInHr);
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 30),
-      child: InkWell(
-        onTap: () {},
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  number,
-                  style: kHeadingextStyle.copyWith(
-                    color: kTextColor.withOpacity(.15),
-                    fontSize: 32,
+    final startFormatted = _formatFullDateTime(startTime);
+    final endFormatted = _formatFullDateTime(endTime);
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: const Color(0xff110919),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        children: [
+          // Left tapable section
+          Expanded(
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: onContainerTap,
+                borderRadius: BorderRadius.circular(12),
+                splashColor: Colors.white24,
+                highlightColor: Colors.white10,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 12,
+                    horizontal: 12,
                   ),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * .030,
-                ),
-                SizedBox(
-                  // color: Colors.red,
-                  width: MediaQuery.of(context).size.width * .63,
-                  child: Column(
+                  child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        title.toString(),
-                        style: kSubtitleTextSyle.copyWith(
-                          overflow: TextOverflow.visible,
-                          //fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          height: 1.5,
+                      SvgPicture.asset(imgUrl, height: 36, width: 36),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              title ?? 'No Title',
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: kSubtitleTextSyle.copyWith(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            isUpcoming
+                                ? Text(
+                                  'Ends at:   $endFormatted',
+                                  style: TextStyle(
+                                    color: Colors.grey.shade400,
+                                    fontSize: 13,
+                                  ),
+                                )
+                                : Text(
+                                  'Starts at: $startFormatted',
+                                  style: TextStyle(
+                                    color: Colors.grey.shade400,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                          ],
                         ),
-                      ),
-                      SizedBox(
-                        height: 2,
-                      ),
-                      Text(
-                        "ends on $endtime",
-                        style: TextStyle(
-                            color: kTextColor.withOpacity(.5),
-                            //fontSize: 13.5,
-                            fontWeight: FontWeight.w400),
                       ),
                     ],
                   ),
                 ),
-              ],
+              ),
             ),
-            Container(
-              // color: Colors.blueAccent,
-              //margin: EdgeInsets.only(left: 2),
-              height: 40,
-              width: 40,
-              child: SvgPicture.asset(imgUrl),
-            )
-          ],
-        ),
+          ),
+
+          // Right share button
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: onShareTap,
+              borderRadius: BorderRadius.circular(20),
+              splashColor: Colors.white24,
+              highlightColor: Colors.white10,
+              child: const Padding(
+                padding: EdgeInsets.all(12),
+                child: Icon(Icons.share, color: Colors.white70, size: 20),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

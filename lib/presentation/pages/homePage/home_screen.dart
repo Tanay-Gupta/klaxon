@@ -20,12 +20,17 @@ class _SliverTabBarDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => 46.0;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return child;
   }
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => false;
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
+      false;
 }
 
 class HomePage extends StatelessWidget {
@@ -43,60 +48,79 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             icon: SvgPicture.asset("assets/icons/home_screen/bell.svg"),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const EmptyNotificationsScreen()),
-            ),
+            onPressed:
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const EmptyNotificationsScreen(),
+                  ),
+                ),
           ),
         ],
       ),
       body: DefaultTabController(
         length: 2,
         child: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) => [
-            SliverToBoxAdapter(child: trendingAlertCarouselSlider(context)),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                child: const Text(
-                  "Let's explore contests happening around",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            SliverPersistentHeader(
-              pinned: true,
-              delegate: _SliverTabBarDelegate(
-                child: Container(
-                  color: kBackgroundColor,
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 2.5),
-                  child: ButtonsTabBar(
-                    backgroundColor: kBlueColor,
-                    unselectedBackgroundColor: Colors.white,
-                    labelStyle: kSubtitleTextSyle.copyWith(color: Colors.white, fontSize: 14),
-                    unselectedLabelStyle: kSubtitleTextSyle.copyWith(color: kTextColor, fontSize: 14),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-                    radius: 20,
-                    tabs: [
-                      Tab(
-                        text: 'Live',
-                        icon: Lottie.asset(livePulseAnimation, height: 15),
+          headerSliverBuilder:
+              (context, innerBoxIsScrolled) => [
+                SliverToBoxAdapter(child: trendingAlertCarouselSlider(context)),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0,
+                      vertical: 10.0,
+                    ),
+                    child: const Text(
+                      "Let's explore contests happening around",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
-                      const Tab(text: 'Upcoming'),
-                    ],
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ],
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: _SliverTabBarDelegate(
+                    child: Container(
+                      color: kBackgroundColor,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 2.5,
+                      ),
+                      child: ButtonsTabBar(
+                        backgroundColor: kBlueColor,
+                        unselectedBackgroundColor: Colors.white,
+                        labelStyle: kSubtitleTextSyle.copyWith(
+                          color: Colors.white,
+                          fontSize: 14,
+                        ),
+                        unselectedLabelStyle: kSubtitleTextSyle.copyWith(
+                          color: kTextColor,
+                          fontSize: 14,
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 15,
+                        ),
+                        radius: 20,
+                        tabs: [
+                          Tab(
+                            text: 'Live',
+                            icon: Lottie.asset(livePulseAnimation, height: 15),
+                          ),
+                          const Tab(text: 'Upcoming'),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
           body: const Padding(
             padding: EdgeInsets.only(left: 20, right: 20, top: 15),
             child: TabBarContent(),
           ),
         ),
       ),
-    
-    
     );
   }
 }
@@ -116,14 +140,13 @@ class TabBarContent extends StatelessWidget {
           itemBuilder: (context, index) {
             final contest = dummyData[index];
             return ListContainer(
-              number: contest.number,
-              durationInHr: contest.durationInHr,
+             // durationInHr: contest.durationInHr,
               startTime: contest.startTime,
               endTime: contest.endTime,
               imgUrl: contest.imgUrl,
               contestUrl: contest.contestUrl,
               title: contest.title,
-              isDone: contest.isDone,
+              //isDone: contest.isDone,
             );
           },
         ),
@@ -134,14 +157,13 @@ class TabBarContent extends StatelessWidget {
           itemBuilder: (context, index) {
             final contest = dummyData[index];
             return ListContainer(
-              number: contest.number,
-              durationInHr: contest.durationInHr,
+             // durationInHr: contest.durationInHr,
               startTime: contest.startTime,
               endTime: contest.endTime,
               imgUrl: contest.imgUrl,
               contestUrl: contest.contestUrl,
               title: contest.title,
-              isDone: contest.isDone,
+            //  isDone: contest.isDone,
             );
           },
         ),

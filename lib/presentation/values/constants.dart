@@ -95,81 +95,81 @@ const livePulseAnimation = 'assets/animations/livePulse.json';
 
 List<ListContainer> dummyData = [
   ListContainer(
-    number: "1",
+   
     title: "CodeChef Long Challenge",
-    durationInHr: "10800", // 3 hours in seconds
+  //  durationInHr: "10800", // 3 hours in seconds
     startTime: "2024-12-01T09:00:00Z",
     endTime: "2024-12-01T12:00:00Z",
     imgUrl: 'assets/icons/codechef.svg',
     contestUrl: 'www.codechef.com',
   ),
   ListContainer(
-    number: "2",
+   
     title: "CodeForces Round #891",
-    durationInHr: "7200", // 2 hours in seconds
+  //  durationInHr: "7200", // 2 hours in seconds
     startTime: "2024-12-02T14:00:00Z",
     endTime: "2024-12-02T16:00:00Z",
     imgUrl: 'assets/icons/codeforces.svg',
     contestUrl: 'www.codeforces.com',
   ),
   ListContainer(
-    number: "3",
+   
     title: "HackerEarth Coding Challenge",
-    durationInHr: "14400", // 4 hours in seconds
+  //  durationInHr: "14400", // 4 hours in seconds
     startTime: "2024-12-03T18:00:00Z",
     endTime: "2024-12-03T22:00:00Z",
     imgUrl: 'assets/icons/hackerearth.svg',
     contestUrl: 'www.hackerearth.com',
   ),
   ListContainer(
-    number: "4",
+    
     title: "HackerRank Weekly Contest",
-    durationInHr: "10800", // 3 hours in seconds
+   // durationInHr: "10800", // 3 hours in seconds
     startTime: "2024-12-04T10:00:00Z",
     endTime: "2024-12-04T13:00:00Z",
     imgUrl: 'assets/icons/hackerrank.svg',
     contestUrl: 'www.hackerrank.com',
   ),
   ListContainer(
-    number: "5",
+   
     title: "LeetCode Biweekly Contest 125",
-    durationInHr: "5400", // 1.5 hours in seconds
+   // durationInHr: "5400", // 1.5 hours in seconds
     startTime: "2024-12-05T07:30:00Z",
     endTime: "2024-12-05T09:00:00Z",
     imgUrl: 'assets/icons/leetcode.svg',
     contestUrl: 'www.leetcode.com',
   ),
   ListContainer(
-    number: "6",
+   
     title: "Kick Start Round G",
-    durationInHr: "7200", // 2 hours in seconds
+  //  durationInHr: "7200", // 2 hours in seconds
     startTime: "2024-12-06T15:00:00Z",
     endTime: "2024-12-06T17:00:00Z",
     imgUrl: 'assets/icons/google.svg',
     contestUrl: 'www.codingcompetitions.withgoogle.com',
   ),
   ListContainer(
-    number: "7",
+   
     title: "TopCoder SRM 871",
-    durationInHr: "5400", // 1.5 hours in seconds
+  //  durationInHr: "5400", // 1.5 hours in seconds
     startTime: "2024-12-07T20:00:00Z",
     endTime: "2024-12-07T21:30:00Z",
     imgUrl: 'assets/icons/topcoder.svg',
     contestUrl: 'www.topcoder.com',
   ),
   ListContainer(
-    number: "8",
+  
     title: "AtCoder Beginner Contest 325",
-    durationInHr: "7200", // 2 hours in seconds
+  //  durationInHr: "7200", // 2 hours in seconds
     startTime: "2024-12-08T05:00:00Z",
     endTime: "2024-12-08T07:00:00Z",
     imgUrl: 'assets/icons/atcoder.svg',
     contestUrl: 'www.atcoder.jp',
   ),
   ListContainer(
-    number: "9",
+    
     title: "CS Academy Open Contest",
-    durationInHr: "10800", // 3 hours in seconds
+  //  durationInHr: "10800", // 3 hours in seconds
     startTime: "2024-12-09T08:00:00Z",
     endTime: "2024-12-09T11:00:00Z",
     imgUrl: 'assets/icons/csAcademy.svg',
