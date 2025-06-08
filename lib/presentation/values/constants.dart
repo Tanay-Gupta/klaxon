@@ -57,7 +57,13 @@ const kSubheading2textStyle = TextStyle(
   fontWeight: FontWeight.w400,
   fontFamily: "Rubik",
 );
-
+const kListContainerTextStyle = TextStyle(
+  overflow: TextOverflow.ellipsis,
+  fontSize: 12,
+  color: Color(0xffA6A6A6),
+  fontFamily: "Rubik",
+  fontWeight: FontWeight.w500,
+);
 const gridIconTextStyle = TextStyle(
   overflow: TextOverflow.ellipsis,
   fontSize: 12,

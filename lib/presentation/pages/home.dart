@@ -7,6 +7,8 @@ import 'package:klaxon/presentation/pages/settings/settings_page.dart';
 import '../values/constants.dart';
 import '../widgets/UnderMaintenanceScreen.dart';
 import '../widgets/connectError.dart';
+import 'bounty/bounty_page.dart';
+import 'hackathons/hackathon_page.dart';
 import 'homePage/home_screen.dart';
 
 class Home extends StatefulWidget {
@@ -22,8 +24,8 @@ class _HomeState extends State<Home> {
   final List<Widget> _tabItems = const [
     HomePage(),
     ContestPage(),
-    NoconnectionScreen(),
-    UnderMaintenanceScreen(),
+    HackathonPage(),
+    BountyPage(),
     SettingsPage(),
   ];
 

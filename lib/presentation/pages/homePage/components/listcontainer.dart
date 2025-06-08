@@ -80,20 +80,14 @@ class ListContainer extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 4),
-                            isUpcoming
+                            isUpcoming==false
                                 ? Text(
-                                  'Ends at:   $endFormatted',
-                                  style: TextStyle(
-                                    color: Colors.grey.shade400,
-                                    fontSize: 13,
-                                  ),
+                                  'ends at: $endFormatted',
+                                  style:kListContainerTextStyle,
                                 )
                                 : Text(
-                                  'Starts at: $startFormatted',
-                                  style: TextStyle(
-                                    color: Colors.grey.shade400,
-                                    fontSize: 13,
-                                  ),
+                                  'starts at: $startFormatted',
+                                  style: kListContainerTextStyle,
                                 ),
                           ],
                         ),
