@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:klaxon/presentation/pages/contests/contest_page.dart';
 import 'package:klaxon/presentation/pages/settings/settings_page.dart';
 
 import '../values/constants.dart';
@@ -20,7 +21,7 @@ class _HomeState extends State<Home> {
 
   final List<Widget> _tabItems = const [
     HomePage(),
-    UnderMaintenanceScreen(),
+    ContestPage(),
     NoconnectionScreen(),
     UnderMaintenanceScreen(),
     SettingsPage(),

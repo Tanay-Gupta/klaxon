@@ -15,6 +15,10 @@ const kAppbarTitleTextColor = Colors.white;
 //----button Colors
 const kButtonColor = Color(0xFF8C45FF);
 
+//----segmented tab Colors
+const kSegmentedTabBGColor = Color(0xff110919);
+const kSegmentedTabSelectedColor = Color(0xff2C114A);
+
 const kBlueColor = Color(0xFF6E8AFA);
 const kBestSellerColor = Color(0xFFFFD073);
 const kGreenColor = Color(0xFF49CC96);
