@@ -33,7 +33,8 @@ class HomePage extends StatelessWidget {
             icon: SvgPicture.asset(
               "assets/icons/home_screen/notification_bell.svg",
             ),
-            onPressed: () => context.push('/notifications'),
+            //onPressed: () => context.push('/notifications'),
+            onPressed: () => context.push('/contestdetail'),
             tooltip: "Notifications", // Navigate to notifications page
           ),
         ],

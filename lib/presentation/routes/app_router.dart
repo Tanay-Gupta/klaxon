@@ -11,6 +11,9 @@ import 'package:klaxon/presentation/pages/errors/under_maintenance_screen.dart';
 import 'package:klaxon/presentation/pages/notifications/empty_notifications_screen.dart';
 import 'package:klaxon/presentation/pages/platform/platform_detail_page.dart';
 
+import '../pages/eventDetail/event_detail_page.dart';
+import '../widgets/contest_detail_page.dart';
+
 final GoRouter router = GoRouter(
   initialLocation: '/',
   routes: [
@@ -69,6 +72,11 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/under_maintenance',
       builder: (context, state) => const UnderMaintenanceScreen(),
+    ),
+    // ContestDetailPage
+    GoRoute(
+      path: '/contestdetail',
+      builder: (context, state) => EventDetailPage(),
     ),
   ],
   errorBuilder:
