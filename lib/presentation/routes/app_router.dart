@@ -46,47 +46,20 @@ final GoRouter router = GoRouter(
     // ),
     GoRoute(
       path: '/notifications',
-      // Instead of builder, use pageBuilder for custom transition
-      pageBuilder: (context, state) {
-        return CustomTransitionPage(
-          key: state.pageKey,
-          child: const EmptyNotificationsScreen(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            // Slide from right animation
-            const begin = Offset(1.0, 0.0);
-            const end = Offset.zero;
-            const curve = Curves.ease;
-
-            final tween = Tween(
-              begin: begin,
-              end: end,
-            ).chain(CurveTween(curve: curve));
-
-            return SlideTransition(
-              position: animation.drive(tween),
-              child: child,
-            );
-          },
-          // transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          //   return FadeTransition(opacity: animation, child: child);
-          // },
-          // transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          //   return ScaleTransition(scale: animation, child: child);
-          // },
-          // transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          //   return RotationTransition(
-          //     turns: animation,
-          //     child: FadeTransition(opacity: animation, child: child),
-          //   );
-          // },
-        );
-      },
+      pageBuilder:
+          (context, state) => buildCustomTransitionPage(
+            key: state.pageKey,
+            child: const EmptyNotificationsScreen(),
+          ),
     ),
     GoRoute(
       path: '/platform/:name',
-      builder: (context, state) {
-        final platformName = state.pathParameters['name'] ?? 'Codeforces';
-        return PlatformDetailPage(platformName: platformName);
+      pageBuilder: (context, state) {
+        final platformName = state.pathParameters['name'] ?? 'Error';
+        return buildCustomTransitionPage(
+          key: state.pageKey,
+          child: PlatformDetailPage(platformName: platformName),
+        );
       },
     ),
     GoRoute(
@@ -102,3 +75,26 @@ final GoRouter router = GoRouter(
       (context, state) =>
           const Scaffold(body: Center(child: Text("404 - Page not found"))),
 );
+
+CustomTransitionPage<dynamic> buildCustomTransitionPage({
+  required LocalKey key,
+  required Widget child,
+}) {
+  return CustomTransitionPage(
+    key: key,
+    child: child,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      // Slide from right animation
+      const begin = Offset(1.0, 0.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      final tween = Tween(
+        begin: begin,
+        end: end,
+      ).chain(CurveTween(curve: curve));
+
+      return SlideTransition(position: animation.drive(tween), child: child);
+    },
+  );
+}
