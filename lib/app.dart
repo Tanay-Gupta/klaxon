@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'presentation/pages/home.dart';
+import 'presentation/pages/platform_detail/platform_detail_page.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -8,7 +9,7 @@ class MyApp extends StatelessWidget {
       title: 'Contest Hunt',
       debugShowCheckedModeBanner: false,
       debugShowMaterialGrid: false,
-      home: Home(),
+      home: PlatformDetailPage(),
     );
   }
 }
