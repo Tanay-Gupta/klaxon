@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart'; // Required for context.go()
 
 import '../../../values/constants.dart';
 
@@ -8,10 +9,16 @@ class PlatformGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final platforms = [
+      {'name': 'Devfolio', 'icon': "assets/icons/coding_platforms/leetcode.svg"},
+      {'name': 'Replit', 'icon': "assets/icons/coding_platforms/codechef.svg"},
+      {'name': 'HackerEarth', 'icon': "assets/icons/coding_platforms/hackerearth.svg"},
+      {'name': 'Request', 'icon': "assets/icons/coding_platforms/codeforces.svg"},
+   ];
+
     return Container(
       height: 100,
       decoration: BoxDecoration(
-        //color: const Color(0xff110919),
         borderRadius: BorderRadius.circular(20),
       ),
       padding: const EdgeInsets.all(11),
@@ -20,13 +27,12 @@ class PlatformGrid extends StatelessWidget {
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
         physics: const NeverScrollableScrollPhysics(),
-        children: const [
-          _PlatformIcon(name: 'Devfolio', icon: "assets/icons/coding_platforms/leetcode.svg"),
-          _PlatformIcon(name: 'Replit', icon: "assets/icons/coding_platforms/codechef.svg"),
-          _PlatformIcon(name: 'HackerEarth', icon: "assets/icons/coding_platforms/hackerearth.svg"),
-          _PlatformIcon(name: 'Request', icon: "assets/icons/coding_platforms/codeforces.svg"),
-
-        ],
+        children: platforms.map((platform) {
+          return _PlatformIcon(
+            name: platform['name']!,
+            icon: platform['icon']!,
+          );
+        }).toList(),
       ),
     );
   }
@@ -40,19 +46,32 @@ class _PlatformIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: kPlatformGridBGColor,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-
-          SvgPicture.asset(icon, height: 30, width: 30),
-          const SizedBox(height: 6),
-          Text(name, style: gridIconTextStyle, textAlign: TextAlign.center),
-        ],
+    return Material(
+      color: kPlatformGridBGColor,
+      borderRadius: BorderRadius.circular(10),
+      child: Ink(
+        decoration: BoxDecoration(
+          color: kPlatformGridBGColor,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(10),
+          onTap: () {
+            context.push('/platform/$name');
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(icon, height: 30, width: 30),
+              const SizedBox(height: 6),
+              Text(
+                name,
+                style: gridIconTextStyle,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
