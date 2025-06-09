@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'presentation/pages/home.dart';
-import 'presentation/pages/platform_detail/platform_detail_page.dart';
+import 'presentation/routes/app_router.dart';
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Contest Hunt',
       debugShowCheckedModeBanner: false,
       debugShowMaterialGrid: false,
-      home: PlatformDetailPage(),
+      routerConfig: router,
     );
   }
 }

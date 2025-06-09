@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:klaxon/presentation/pages/homePage/components/body.dart';
 import '../../values/constants.dart';
-import '../notificationPage/notification_screen.dart';
 
 class HomePage extends StatelessWidget {
   final Function(int)? onNavigateToTab;
@@ -33,13 +33,8 @@ class HomePage extends StatelessWidget {
             icon: SvgPicture.asset(
               "assets/icons/home_screen/notification_bell.svg",
             ),
-            onPressed:
-                () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const EmptyNotificationsScreen(),
-                  ),
-                ),
+            onPressed: () => context.push('/notifications'),
+            tooltip: "Notifications", // Navigate to notifications page
           ),
         ],
       ),

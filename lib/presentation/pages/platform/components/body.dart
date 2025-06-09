@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart'; 
 import '../../../values/constants.dart';
-import '../../platform_detail/components/contest_tab_bar.dart';
-import '../../platform_detail/components/tab_bar_content.dart';
+import 'contest_tab_bar.dart';
+import 'tab_bar_content.dart';
 
 class PlatformDetailBody extends StatelessWidget {
   const PlatformDetailBody({super.key});

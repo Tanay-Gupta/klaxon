@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../values/constants.dart';
+import '../../values/constants.dart';
 
 class UnderMaintenanceScreen extends StatelessWidget {
   const UnderMaintenanceScreen({super.key});
