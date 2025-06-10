@@ -1,47 +1,111 @@
 import 'package:flutter/material.dart';
-import '../../../values/dummy_data.dart';
-import '../../homePage/components/listcontainer.dart';
-// Make sure your dummyData is in this path
 
-class TabBarContent extends StatelessWidget {
+import '../../../../infrastructure/models/hackathon_model.dart';
+import '../../../../infrastructure/services/api/api_service.dart';
+import '../../homePage/components/listcontainer.dart';
+
+class TabBarContent extends StatefulWidget {
   const TabBarContent({super.key});
+
+  @override
+  State<TabBarContent> createState() => _TabBarContentState();
+}
+
+class _TabBarContentState extends State<TabBarContent> {
+  late Future<List<HackathonModel>> _hackathonsFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _hackathonsFuture = ContestHuntApi().fetchHackathons();
+  }
+
+  Future<void> _refresh() async {
+    setState(() {
+      _hackathonsFuture = ContestHuntApi().fetchHackathons();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return TabBarView(
       physics: const BouncingScrollPhysics(),
       children: [
-        _buildContestList(isUpcoming: false),
-        _buildContestList(isUpcoming: true),
+        _buildHackathonList(isUpcoming: false),
+        _buildHackathonList(isUpcoming: true),
       ],
     );
   }
 
-  Widget _buildContestList({required bool isUpcoming}) {
-    final contests =
-        dummyData.where((contest) => contest.isUpcoming == isUpcoming).toList();
+  Widget _buildHackathonList({required bool isUpcoming}) {
+    return FutureBuilder<List<HackathonModel>>(
+      future: _hackathonsFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
 
-    return ListView.builder(
-      physics: const BouncingScrollPhysics(),
-      itemCount: contests.length,
-      itemBuilder: (context, index) {
-        final contest = contests[index];
-        return ListContainer(
-        //  durationInHr: contest.durationInHr.toString(),
-          startTime: contest.startTime.toIso8601String(),
-          endTime: contest.endTime.toString(),
-          imgUrl: contest.imgUrl,
-          contestUrl: contest.contestUrl,
-          title: contest.title,
-        //  isDone: contest.isDone,
-        isUpcoming: contest.isUpcoming,
-          onContainerTap: () {
-            print('Tapped on contest: ${contest.title}');
-          },
-          onShareTap: () {
-            // Implement share functionality here
-            print('Share tapped for contest: ${contest.title}');
-          },
+        if (snapshot.hasError) {
+          return RefreshIndicator(
+            onRefresh: _refresh,
+            child: ListView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              children: const [
+                Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 100),
+                    child: Text("Failed to load hackathons."),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
+
+        final filtered = snapshot.data!
+            .where((hackathon) => (isUpcoming
+                ? hackathon.startTime! * 1000 > DateTime.now().millisecondsSinceEpoch
+                : hackathon.startTime! * 1000 <= DateTime.now().millisecondsSinceEpoch))
+            .toList();
+
+        return RefreshIndicator(
+          onRefresh: _refresh,
+          child: filtered.isEmpty
+              ? ListView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  children: const [
+                    Center(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 100),
+                        child: Text("No hackathons found."),
+                      ),
+                    ),
+                  ],
+                )
+              : ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: filtered.length,
+                  itemBuilder: (context, index) {
+                    final hackathon = filtered[index];
+                    return ListContainer(
+                      startTime: DateTime.fromMillisecondsSinceEpoch(
+                              hackathon.startTime! * 1000)
+                          .toIso8601String(),
+                      endTime: hackathon.endTime.toString(),
+                      imgUrl:
+                          'assets/icons/coding_platforms/leetcode.svg',
+                      contestUrl: hackathon.url ?? '',
+                      title: hackathon.name ?? 'Untitled Hackathon',
+                      isUpcoming: isUpcoming,
+                      onContainerTap: () {
+                        print('Tapped on hackathon: ${hackathon.name}');
+                      },
+                      onShareTap: () {
+                        print('Share tapped for hackathon: ${hackathon.name}');
+                      },
+                    );
+                  },
+                ),
         );
       },
     );
