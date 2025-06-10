@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:klaxon/presentation/pages/contests/components/body.dart';
 
 import '../../values/constants.dart';
+import '../../values/values.dart';
 
 class ContestPage extends StatelessWidget {
   const ContestPage({super.key});
@@ -12,7 +13,7 @@ class ContestPage extends StatelessWidget {
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
         surfaceTintColor: kBackgroundColor,
-        title: const Text('Contests', style: kAppbarTitleStyle),
+        title: const Text(contestTitle, style: kAppbarTitleStyle),
         centerTitle: true,
         backgroundColor: kBackgroundColor, // Match the background color
         elevation: 0,

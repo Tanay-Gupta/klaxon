@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../infrastructure/models/hackathon_model.dart';
 import '../../../../infrastructure/services/api/api_service.dart';
+import '../../../values/values.dart';
 import '../../homePage/components/listcontainer.dart';
 
 class TabBarContent extends StatefulWidget {
@@ -54,7 +55,7 @@ class _TabBarContentState extends State<TabBarContent> {
                 Center(
                   child: Padding(
                     padding: EdgeInsets.only(top: 100),
-                    child: Text("Failed to load hackathons."),
+                    child: Text(apiErrorMessage),
                   ),
                 ),
               ],
@@ -77,7 +78,7 @@ class _TabBarContentState extends State<TabBarContent> {
                     Center(
                       child: Padding(
                         padding: EdgeInsets.only(top: 100),
-                        child: Text("No hackathons found."),
+                        child: Text(noHackathonsFound),
                       ),
                     ),
                   ],

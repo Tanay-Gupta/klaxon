@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../values/constants.dart';
+import '../../../values/values.dart';
 import '../../hackathons/components/contest_tab_bar.dart';
 import '../../hackathons/components/platform_grid.dart';
 import '../../hackathons/components/tab_bar_content.dart';
@@ -25,7 +26,7 @@ class HackathonBody extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      "Get ready to code and win exciting prizes!",
+                      hackathonsTagline,
                       style: kSubheadingtextStyle,
                     ),
                   ),

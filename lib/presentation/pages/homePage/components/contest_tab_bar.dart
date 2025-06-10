@@ -3,6 +3,7 @@ import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../values/constants.dart';
+import '../../../values/values.dart';
 
 class ContestTabBar extends StatelessWidget {
   final double width;

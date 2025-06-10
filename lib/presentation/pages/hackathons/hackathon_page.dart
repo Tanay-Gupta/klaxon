@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../values/constants.dart';
+import '../../values/values.dart';
 import 'components/body.dart';
 
 class HackathonPage extends StatelessWidget {
@@ -12,7 +13,7 @@ class HackathonPage extends StatelessWidget {
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
         surfaceTintColor: kBackgroundColor,
-        title: const Text('Hackathons', style: kAppbarTitleStyle),
+        title: const Text(hackathonsTitle, style: kAppbarTitleStyle),
         centerTitle: true,
         backgroundColor: kBackgroundColor, // Match the background color
         elevation: 0,

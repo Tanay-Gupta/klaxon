@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../infrastructure/models/contest_model.dart';
 import '../../../../infrastructure/services/api/api_service.dart';
+import '../../../values/values.dart';
 import '../../homePage/components/listcontainer.dart';
 
 class TabBarContent extends StatefulWidget {
@@ -48,7 +49,7 @@ class _TabBarContentState extends State<TabBarContent> {
             onRefresh: _refreshData,
             child: ListView(
               children: const [
-                SizedBox(height: 300, child: Center(child: Text('No contests available'))),
+                SizedBox(height: 300, child: Center(child: Text(noContestsFound))),
               ],
             ),
           );

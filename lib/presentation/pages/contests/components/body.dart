@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../values/constants.dart';
+import '../../../values/values.dart';
 import 'contest_tab_bar.dart';
 import 'platform_grid.dart';
 import 'tab_bar_content.dart';
@@ -24,7 +25,7 @@ class ContestBody extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      "Competitive Programming Platforms",
+                      contestTagline,
                       style: kSubheadingtextStyle,
                     ),
                   ),

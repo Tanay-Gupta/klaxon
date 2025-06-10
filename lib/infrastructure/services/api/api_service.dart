@@ -1,14 +1,15 @@
 import 'package:dio/dio.dart';
-import 'package:klaxon/infrastructure/models/bounty_model.dart' show BountyModel;
+import 'package:klaxon/infrastructure/models/bounty_model.dart'
+    show BountyModel;
 
+import '../../../presentation/values/values.dart';
 import '../../models/contest_model.dart';
 import '../../models/hackathon_model.dart';
-
 
 class ContestHuntApi {
   final Dio _dio = Dio(
     BaseOptions(
-      baseUrl: 'https://contesthunt-api.onrender.com/',
+      baseUrl: baseAPI,
       connectTimeout: const Duration(seconds: 10),
       receiveTimeout: const Duration(seconds: 10),
     ),

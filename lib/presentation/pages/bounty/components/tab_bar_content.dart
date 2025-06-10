@@ -52,6 +52,7 @@
 import 'package:flutter/material.dart';
 import '../../../../infrastructure/models/bounty_model.dart';
 import '../../../../infrastructure/services/api/api_service.dart';
+import '../../../values/values.dart';
 import '../../homePage/components/listcontainer.dart';
 
 class TabBarContent extends StatefulWidget {
@@ -104,7 +105,7 @@ Widget _buildBountyList({required bool isPaid}) {
               Center(
                 child: Padding(
                   padding: EdgeInsets.only(top: 100),
-                  child: Text("Failed to load bounties."),
+                  child: Text(apiErrorMessage),
                 ),
               ),
             ],
@@ -125,7 +126,7 @@ Widget _buildBountyList({required bool isPaid}) {
                   Center(
                     child: Padding(
                       padding: EdgeInsets.only(top: 100),
-                      child: Text("No bounties found."),
+                      child: Text(noBountiesFound),
                     ),
                   ),
                 ],

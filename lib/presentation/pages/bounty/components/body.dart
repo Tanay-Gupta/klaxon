@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../values/constants.dart';
+import '../../../values/values.dart';
 import '../../bounty/components/contest_tab_bar.dart';
 import '../../bounty/components/tab_bar_content.dart';
 
@@ -23,10 +24,7 @@ class BountyBody extends StatelessWidget {
                     vertical: 5.0,
                   ),
                   child: Center(
-                    child: Text(
-                      "Discover, and earn rewards with bounties!",
-                      style: kSubheadingtextStyle,
-                    ),
+                    child: Text(bountyTagline, style: kSubheadingtextStyle),
                   ),
                 ),
               ),
@@ -34,7 +32,7 @@ class BountyBody extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
                   child: SvgPicture.asset(
-                    'assets/icons/bounty_screen/bug-fixing.svg',
+                   bountyImage,
                     width: 200,
                     height: 200,
                   ),
