@@ -80,8 +80,8 @@ class _TabBarContentState extends State<TabBarContent> {
           final contest = contests[index];
           return ListContainer(
             startTime: DateTime.fromMillisecondsSinceEpoch(contest.startTime! * 1000).toIso8601String(),
-            endTime: contest.endTime.toString(),
-            imgUrl: 'assets/icons/coding_platforms/leetcode.svg', 
+            endTime: DateTime.fromMillisecondsSinceEpoch(contest.endTime! * 1000).toIso8601String(),
+            imgUrl: platformLogos[contest.platform] ?? '', 
             contestUrl: contest.url ?? '',
             title: contest.name ?? 'No Title',
             isUpcoming: DateTime.fromMillisecondsSinceEpoch(contest.startTime! * 1000).isAfter(DateTime.now()),

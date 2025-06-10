@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; 
+import 'package:intl/intl.dart';
 import '../../../values/constants.dart';
 import 'contest_tab_bar.dart';
 import 'tab_bar_content.dart';
 
 class PlatformDetailBody extends StatelessWidget {
-  const PlatformDetailBody({super.key});
+  final String platformName;
+  const PlatformDetailBody({super.key, required this.platformName});
 
   @override
   Widget build(BuildContext context) {
@@ -72,9 +73,9 @@ class PlatformDetailBody extends StatelessWidget {
                 ),
               ),
             ],
-        body: const Padding(
-          padding: EdgeInsets.only(left: 16, right: 16, top: 15),
-          child: TabBarContent(),
+        body: Padding(
+          padding: const EdgeInsets.only(left: 16, right: 16, top: 15),
+          child: TabBarContent(platformName: platformName),
         ),
       ),
     );

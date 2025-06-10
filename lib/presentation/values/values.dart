@@ -82,20 +82,20 @@ const String replitURL = 'https://replit.com/';
 //---------------------------------------Coding Platform Map of name to logo---------------------------------------//
 
 const Map<String, String> platformLogos = {
-  leetcode: leetcodeLogo,
-  codechef: codechefLogo,
-  hackerrank: hackerrankLogo,
-  codeforces: codeforcesLogo,
-  atcoder: atcoderLogo,
-  topcoder: topcoderLogo,
-  nowcoder: nowcoderLogo,
-  geeksforgeek: geeksforgeekLogo,
-  hackerearth: hackerearthLogo,
-  code360: code360Logo,
-  csacademy: csacademyLogo,
-  requestplatform: requestplatformLogo,
-  devfolio: devfolioLogo,
-  replit: replitLogo,
+  "leetcode": leetcodeLogo,
+  "codechef": codechefLogo,
+  "hackerrank": hackerrankLogo,
+  "codeforces": codeforcesLogo,
+  "atcoder": atcoderLogo,
+  "topcoder": topcoderLogo,
+  "nowcoder": nowcoderLogo,
+  "geeksforgeeks": geeksforgeekLogo,
+  "hackerearth": hackerearthLogo,
+  "code360": code360Logo,
+  "csacademy": csacademyLogo,
+  "requestplatform": requestplatformLogo,
+  "devfolio": devfolioLogo,
+  "replit": replitLogo,
 };
 //---------------------------------------Coding Platform Map of name to URL---------------------------------------//
 const Map<String, String> platformURLs = {

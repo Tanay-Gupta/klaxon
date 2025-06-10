@@ -34,7 +34,9 @@ class PlatformDetailPage extends StatelessWidget {
           ),
         ],
       ),
-      body: SafeArea(child: PlatformDetailBody()),
+      body: SafeArea(
+        child: PlatformDetailBody(platformName: platformName.toLowerCase()),
+      ),
     );
   }
 }

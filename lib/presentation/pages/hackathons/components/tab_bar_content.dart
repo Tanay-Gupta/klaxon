@@ -92,7 +92,9 @@ class _TabBarContentState extends State<TabBarContent> {
                       startTime: DateTime.fromMillisecondsSinceEpoch(
                               hackathon.startTime! * 1000)
                           .toIso8601String(),
-                      endTime: hackathon.endTime.toString(),
+                      endTime: DateTime.fromMillisecondsSinceEpoch(
+                              hackathon.endTime! * 1000)
+                          .toIso8601String(),
                       imgUrl:
                           'assets/icons/coding_platforms/leetcode.svg',
                       contestUrl: hackathon.url ?? '',

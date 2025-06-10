@@ -140,7 +140,9 @@ Widget _buildBountyList({required bool isPaid}) {
                     startTime: DateTime.fromMillisecondsSinceEpoch(
                             bounty.startTime! * 1000)
                         .toIso8601String(),
-                    endTime: bounty.endTime.toString(),
+                    endTime: DateTime.fromMillisecondsSinceEpoch(
+                            bounty.endTime! * 1000)
+                        .toIso8601String(),
                     imgUrl: 'assets/icons/coding_platforms/leetcode.svg',
                     contestUrl: bounty.url ?? '',
                     title: bounty.name ?? 'Untitled Bounty',
