@@ -52,6 +52,7 @@
 import 'package:flutter/material.dart';
 import '../../../../infrastructure/models/bounty_model.dart';
 import '../../../../infrastructure/services/api/api_service.dart';
+import '../../../values/platform_master.dart';
 import '../../../values/values.dart';
 import '../../homePage/components/listcontainer.dart';
 
@@ -82,8 +83,8 @@ class _TabBarContentState extends State<TabBarContent> {
     return TabBarView(
       physics: const BouncingScrollPhysics(),
       children: [
-        _buildBountyList(isPaid: false),
         _buildBountyList(isPaid: true),
+        _buildBountyList(isPaid: false),
       ],
     );
   }
@@ -114,7 +115,7 @@ Widget _buildBountyList({required bool isPaid}) {
       }
 
       final filtered = snapshot.data!
-          .where((bounty) => (isPaid ? bounty.paid != null : bounty.paid == null))
+          .where((bounty) => (isPaid ? bounty.amount! >0 : bounty.amount == 0))
           .toList();
 
       return RefreshIndicator(
@@ -143,7 +144,7 @@ Widget _buildBountyList({required bool isPaid}) {
                     endTime: DateTime.fromMillisecondsSinceEpoch(
                             bounty.endTime! * 1000)
                         .toIso8601String(),
-                    imgUrl: 'assets/icons/coding_platforms/leetcode.svg',
+                    imgUrl: platformLogos[bounty.platform] ?? '$bounty.platform',
                     contestUrl: bounty.url ?? '',
                     title: bounty.name ?? 'Untitled Bounty',
                     isUpcoming: true,

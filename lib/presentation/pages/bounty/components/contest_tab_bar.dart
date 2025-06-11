@@ -32,11 +32,11 @@ class ContestTabBar extends StatelessWidget {
         tabs: [
           Tab(
             text: 'Paid',
-            icon: Icon(Icons.currency_rupee, size: 15),
+            // icon: Icon(Icons.currency_rupee, size: 15),
           ),
           const Tab(
             text: 'Unpaid',
-            icon: Icon(Icons.money_off_outlined, size: 15),
+            // icon: Icon(Icons.money_off_outlined, size: 15),
           ),
         ],
       ),
