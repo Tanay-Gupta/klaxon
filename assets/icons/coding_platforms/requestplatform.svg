@@ -1,0 +1,9 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <g>
+    <circle cx="12" cy="12" r="11.54839" fill="#fff" opacity="0.05"/>
+    <g>
+      <rect x="9.95469" y="3.03831" width="4.09062" height="17.92339" rx="2.04531" fill="#fff"/>
+      <rect x="9.95469" y="3.03831" width="4.09062" height="17.92339" rx="2.04531" transform="translate(24 0) rotate(90)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

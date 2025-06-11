@@ -37,15 +37,15 @@ const String hackerrankLogo = 'assets/icons/coding_platforms/hackerrank.svg';
 const String codeforcesLogo = 'assets/icons/coding_platforms/codeforces.svg';
 const String atcoderLogo = 'assets/icons/coding_platforms/atcoder.svg';
 const String topcoderLogo = 'assets/icons/coding_platforms/topcoder.svg';
-const String nowcoderLogo = 'assets/icons/coding_platforms/google.svg';
+const String nowcoderLogo = 'assets/icons/coding_platforms/nowcoder.svg';
 const String geeksforgeekLogo =
     'assets/icons/coding_platforms/geeksforgeeks.svg';
 const String hackerearthLogo = 'assets/icons/coding_platforms/hackerearth.svg';
-const String code360Logo = 'assets/icons/coding_platforms/google.svg';
-const String csacademyLogo = 'assets/icons/coding_platforms/csAcademy.svg';
-const String requestplatformLogo = 'assets/icons/coding_platforms/google.svg';
-const String devfolioLogo = 'assets/icons/coding_platforms/google.svg';
-const String replitLogo = 'assets/icons/coding_platforms/google.svg';
+const String code360Logo = 'assets/icons/coding_platforms/code360.svg';
+const String csacademyLogo = 'assets/icons/coding_platforms/csacademy.svg';
+const String requestplatformLogo = 'assets/icons/coding_platforms/requestplatform.svg';
+const String devfolioLogo = 'assets/icons/coding_platforms/devfolio.svg';
+const String replitLogo = 'assets/icons/coding_platforms/replit.svg';
 
 //---------------------------------------Coding Platform Names---------------------------------------//
 const String leetcode = 'LeetCode';
@@ -55,10 +55,11 @@ const String codeforces = 'Codeforces';
 const String atcoder = 'AtCoder';
 const String topcoder = 'TopCoder';
 const String nowcoder = 'NowCoder';
-const String geeksforgeek = 'GeeksforGeeks';
+const String geeksforgeeks = 'geeksforgeeks';
 const String hackerearth = 'HackerEarth';
 const String code360 = 'CodingNinjas';
 const String csacademy = 'CSAcademy';
+                          
 const String requestplatform = 'RequestPlatform';
 const String devfolio = 'Devfolio';
 const String replit = 'Replit';
@@ -106,7 +107,7 @@ const Map<String, String> platformURLs = {
   atcoder: atcoderURL,
   topcoder: topcoderURL,
   nowcoder: nowcoderURL,
-  geeksforgeek: geeksforgeekURL,
+  geeksforgeeks: geeksforgeekURL,
   hackerearth: hackerearthURL,
   code360: code360URL,
   csacademy: csacademyURL,
@@ -124,7 +125,7 @@ const Map<String, String> platformDisplayNames = {
   atcoder: 'AtCoder',
   topcoder: 'TopCoder',
   nowcoder: 'NowCoder',
-  geeksforgeek: 'GeeksforGeeks',
+  geeksforgeeks: 'GeeksforGeeks',
   hackerearth: 'HackerEarth',
   code360: 'CodingNinjas',
   csacademy: 'CSAcademy',
@@ -141,7 +142,7 @@ const List<Map<String, String>> contestPlatforms = [
   {'name': atcoder, 'icon': atcoderLogo},
   {'name': topcoder, 'icon': topcoderLogo},
   {'name': nowcoder, 'icon': nowcoderLogo},
-  {'name': geeksforgeek, 'icon': geeksforgeekLogo},
+  {'name': geeksforgeeks, 'icon': geeksforgeekLogo},
   {'name': hackerearth, 'icon': hackerearthLogo},
   {'name': code360, 'icon': code360Logo},
   {'name': csacademy, 'icon': csacademyLogo},
