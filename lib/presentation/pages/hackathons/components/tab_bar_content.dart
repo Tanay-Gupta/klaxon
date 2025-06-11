@@ -96,7 +96,7 @@ class _TabBarContentState extends State<TabBarContent> {
                               hackathon.endTime! * 1000)
                           .toIso8601String(),
                       imgUrl:
-                          'assets/icons/coding_platforms/leetcode.svg',
+                         platformLogos[hackathon.platform] ?? '$hackathon.platform',
                       contestUrl: hackathon.url ?? '',
                       title: hackathon.name ?? 'Untitled Hackathon',
                       isUpcoming: isUpcoming,

@@ -59,7 +59,7 @@ class _PlatformIcon extends StatelessWidget {
             children: [
               SvgPicture.asset(icon, height: 30, width: 30),
               const SizedBox(height: 6),
-              Text(name, style: gridIconTextStyle, textAlign: TextAlign.center),
+              Text(platformDisplayNames[name]??"", style: gridIconTextStyle, textAlign: TextAlign.center),
             ],
           ),
         ),

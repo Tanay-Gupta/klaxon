@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 const String appName = "Contest Hunt"; // change this to your app name
 const String baseAPI = "https://contesthunt-api.onrender.com/";
 const livePulseAnimation = 'assets/animations/livePulse.json';
@@ -29,6 +31,21 @@ const String apiErrorMessage =
 
 const String bountyImage = 'assets/icons/bounty_screen/bug-fixing.svg';
 
+const contest_platforms = [
+  'atcoder',
+  'code360',
+  'codechef',
+  'codeforces',
+  'csacademy',
+  'geeksforgeeks',
+  'hackerearth',
+  'leetcode',
+  'nowcoder',
+  'topcoder',
+];
+const hackathon_platforms = ['devfolio', 'devpost', 'unstop'];
+const bounty_platforms = ['replit'];
+
 //---------------------------------------Coding Platform Logo---------------------------------------//
 
 const String leetcodeLogo = 'assets/icons/coding_platforms/leetcode.svg';
@@ -43,23 +60,23 @@ const String geeksforgeekLogo =
 const String hackerearthLogo = 'assets/icons/coding_platforms/hackerearth.svg';
 const String code360Logo = 'assets/icons/coding_platforms/code360.svg';
 const String csacademyLogo = 'assets/icons/coding_platforms/csacademy.svg';
-const String requestplatformLogo = 'assets/icons/coding_platforms/requestplatform.svg';
+const String requestplatformLogo =
+    'assets/icons/coding_platforms/requestplatform.svg';
 const String devfolioLogo = 'assets/icons/coding_platforms/devfolio.svg';
 const String replitLogo = 'assets/icons/coding_platforms/replit.svg';
 
 //---------------------------------------Coding Platform Names---------------------------------------//
-const String leetcode = 'LeetCode';
-const String codechef = 'CodeChef';
-const String hackerrank = 'HackerRank';
-const String codeforces = 'Codeforces';
-const String atcoder = 'AtCoder';
-const String topcoder = 'TopCoder';
-const String nowcoder = 'NowCoder';
+const String leetcode = 'leetcode';
+const String codechef = 'codechef';
+const String hackerrank = 'hackerrank';
+const String codeforces = 'codeforces';
+const String atcoder = 'atcoder';
+const String topcoder = 'topcoder';
+const String nowcoder = 'nowcoder';
 const String geeksforgeeks = 'geeksforgeeks';
-const String hackerearth = 'HackerEarth';
-const String code360 = 'CodingNinjas';
-const String csacademy = 'CSAcademy';
-                          
+const String hackerearth = 'hackerearth';
+const String code360 = 'code360';
+const String csacademy = 'csacademy';
 const String requestplatform = 'RequestPlatform';
 const String devfolio = 'Devfolio';
 const String replit = 'Replit';
@@ -83,20 +100,20 @@ const String replitURL = 'https://replit.com/';
 //---------------------------------------Coding Platform Map of name to logo---------------------------------------//
 
 const Map<String, String> platformLogos = {
-  "leetcode": leetcodeLogo,
-  "codechef": codechefLogo,
-  "hackerrank": hackerrankLogo,
-  "codeforces": codeforcesLogo,
-  "atcoder": atcoderLogo,
-  "topcoder": topcoderLogo,
-  "nowcoder": nowcoderLogo,
-  "geeksforgeeks": geeksforgeekLogo,
-  "hackerearth": hackerearthLogo,
-  "code360": code360Logo,
-  "csacademy": csacademyLogo,
-  "requestplatform": requestplatformLogo,
-  "devfolio": devfolioLogo,
-  "replit": replitLogo,
+  leetcode: leetcodeLogo,
+  codechef: codechefLogo,
+  hackerrank: hackerrankLogo,
+  codeforces: codeforcesLogo,
+  atcoder: atcoderLogo,
+  topcoder: topcoderLogo,
+  nowcoder: nowcoderLogo,
+  geeksforgeeks: geeksforgeekLogo,
+  hackerearth: hackerearthLogo,
+  code360: code360Logo,
+  csacademy: csacademyLogo,
+  requestplatform: requestplatformLogo,
+  devfolio: devfolioLogo,
+  replit: replitLogo,
 };
 //---------------------------------------Coding Platform Map of name to URL---------------------------------------//
 const Map<String, String> platformURLs = {
@@ -125,7 +142,7 @@ const Map<String, String> platformDisplayNames = {
   atcoder: 'AtCoder',
   topcoder: 'TopCoder',
   nowcoder: 'NowCoder',
-  geeksforgeeks: 'GeeksforGeeks',
+  geeksforgeeks: 'GFG',
   hackerearth: 'HackerEarth',
   code360: 'CodingNinjas',
   csacademy: 'CSAcademy',
