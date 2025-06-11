@@ -30,11 +30,11 @@ class ContestTabBar extends StatelessWidget {
         radius: 12,
         tabs: [
           Tab(
-            text: 'Live',
+            text: 'Upcoming',
             // icon: Icon(Icons.currency_rupee, size: 15),
           ),
           const Tab(
-            text: 'Upcoming',
+            text: 'Live',
             //icon: Icon(Icons.money_off_outlined, size: 15),
           ),
         ],

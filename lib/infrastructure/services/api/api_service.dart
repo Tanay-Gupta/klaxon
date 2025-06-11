@@ -10,8 +10,8 @@ class ContestHuntApi {
   final Dio _dio = Dio(
     BaseOptions(
       baseUrl: baseAPI,
-      connectTimeout: const Duration(seconds: 10),
-      receiveTimeout: const Duration(seconds: 10),
+      connectTimeout: const Duration(seconds: 120),
+      receiveTimeout: const Duration(seconds: 120 ),
     ),
   );
 

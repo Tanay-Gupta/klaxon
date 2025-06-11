@@ -5,6 +5,7 @@ import 'package:klaxon/presentation/pages/eventDetail/components/event_action_bu
 
 import '../../../../infrastructure/models/contest_model.dart';
 import '../../../values/constants.dart';
+import '../../../values/platform_master.dart';
 import 'event_reminder_row.dart';
 
 // 📝 Main Event Detail Body Widget
@@ -41,7 +42,7 @@ class EventDetailBody extends StatelessWidget {
           // 🎯 Contest Name
           Text(contest.name ?? "", style: kH1textStyle),
           const SizedBox(height: 8),
-          Text("Hosted by ${contest.platform}", style: kH1SubHeadingtextStyle),
+          Text("Hosted by ${platformDisplayNames[contest.platform]}", style: kH1SubHeadingtextStyle),
           const SizedBox(height: 10),
           Divider(color: kNavUnselectedIconColor, thickness: 1),
 
@@ -89,17 +90,17 @@ class EventDetailBody extends StatelessWidget {
           const SizedBox(height: 16),
 
           // 📄 Event Details Section
-          Text('Event Details', style: kHeadingextStyle),
+          Text('Event Description', style: kHeadingextStyle),
           const SizedBox(height: 8),
           Html(
-            data: contest.description ?? "<p>No description available</p>",
+            data: contest.description!=null && contest.description!.isNotEmpty ? contest.description:  " No description available",
             style: {"body": Style(color: Colors.white)},
           ),
           const SizedBox(height: 16),
           EventActionButton(
             label: "Open Site",
             onPressed: () {
-              // TODO: Implement site opening logic
+              
             },
           ),
           const SizedBox(height: 16),

@@ -4,21 +4,24 @@ import '../../../../infrastructure/models/platform_model.dart';
 import '../../../../infrastructure/services/api/api_service.dart';
 import '../../../values/platform_master.dart';
 import '../../../values/values.dart';
+import '../../../widgets/contest_list_container.dart';
 import '../../homePage/components/listcontainer.dart';
 // Make sure your dummyData is in this path
 
 class TabBarContent extends StatefulWidget {
   final String platformName;
   final PlatformType platformType;
-  const TabBarContent({super.key, required this.platformName, required this.platformType});
+  const TabBarContent({
+    super.key,
+    required this.platformName,
+    required this.platformType,
+  });
 
   @override
   State<TabBarContent> createState() => _TabBarContentState();
 }
 
 class _TabBarContentState extends State<TabBarContent> {
-
-  
   late Future<List<dynamic>> _futureData;
   bool _isRefreshing = false;
   final ContestHuntApi _contestHuntApi = ContestHuntApi();
@@ -27,10 +30,10 @@ class _TabBarContentState extends State<TabBarContent> {
   void initState() {
     super.initState();
     // _futureContests = _contestHuntApi.fetchContests(platform: widget.platformName);
-    _futureData= getPlatformDataFuture();
-    
+    _futureData = getPlatformDataFuture();
   }
-Future<List<dynamic>> getPlatformDataFuture() {
+
+  Future<List<dynamic>> getPlatformDataFuture() {
     switch (widget.platformType) {
       case PlatformType.contest:
         return _contestHuntApi.fetchContests(platform: widget.platformName);
@@ -40,6 +43,7 @@ Future<List<dynamic>> getPlatformDataFuture() {
         return _contestHuntApi.fetchBounties(platform: widget.platformName);
     }
   }
+
   Future<void> _refreshData() async {
     setState(() {
       _isRefreshing = true;
@@ -56,7 +60,8 @@ Future<List<dynamic>> getPlatformDataFuture() {
     return FutureBuilder<List<dynamic>>(
       future: _futureData,
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting && !_isRefreshing) {
+        if (snapshot.connectionState == ConnectionState.waiting &&
+            !_isRefreshing) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
@@ -65,28 +70,37 @@ Future<List<dynamic>> getPlatformDataFuture() {
             onRefresh: _refreshData,
             child: ListView(
               children: const [
-                SizedBox(height: 300, child: Center(child: Text(noContestsFound))),
+                SizedBox(
+                  height: 300,
+                  child: Center(child: Text(noContestsFound)),
+                ),
               ],
             ),
           );
         } else {
           final contests = snapshot.data!;
-          final upcoming = contests.where((e) => e.startTime != null && (DateTime.fromMillisecondsSinceEpoch(e.startTime! * 1000).isAfter(DateTime.now()))).toList();
+          final upcoming =
+              contests
+                  .where(
+                    (e) =>
+                        e.startTime != null &&
+                        (DateTime.fromMillisecondsSinceEpoch(
+                          e.startTime! * 1000,
+                        ).isAfter(DateTime.now())),
+                  )
+                  .toList();
           final ongoing = contests.where((e) => !upcoming.contains(e)).toList();
 
           return TabBarView(
             physics: const BouncingScrollPhysics(),
-            children: [
-              _buildContestList(ongoing),
-              _buildContestList(upcoming),
-            ],
+            children: [_buildContestList(upcoming, widget.platformType), _buildContestList(ongoing, widget.platformType)],
           );
         }
       },
     );
   }
 
-  Widget _buildContestList(List<dynamic> contests) {
+  Widget _buildContestList(List<dynamic> contests, PlatformType platformType) {
     return RefreshIndicator(
       onRefresh: _refreshData,
       child: ListView.builder(
@@ -94,17 +108,34 @@ Future<List<dynamic>> getPlatformDataFuture() {
         itemCount: contests.length,
         itemBuilder: (context, index) {
           final contest = contests[index];
+          if (platformType == PlatformType.contest) {
+
+            ContestModel temp=contest;
+            return ContestListContainer(
+              contestModel: temp,
+              imgPath: platformLogos[contest.platform] ?? '',
+              isUpcoming: DateTime.fromMillisecondsSinceEpoch(
+                contest.startTime! * 1000,
+              ).isAfter(DateTime.now()),
+            );
+          }
           return ListContainer(
-            startTime: DateTime.fromMillisecondsSinceEpoch(
-                            contest.startTime! * 1000)
-                        .toIso8601String(),
-            endTime: DateTime.fromMillisecondsSinceEpoch(
-                            contest.endTime! * 1000)
-                        .toIso8601String(),
-            imgUrl: platformLogos[contest.platform] ?? '', // Backup URL if not found
+            startTime:
+                DateTime.fromMillisecondsSinceEpoch(
+                  contest.startTime! * 1000,
+                ).toIso8601String(),
+            endTime:
+                DateTime.fromMillisecondsSinceEpoch(
+                  contest.endTime! * 1000,
+                ).toIso8601String(),
+            imgUrl:
+                platformLogos[contest.platform] ??
+                '', // Backup URL if not found
             contestUrl: contest.url ?? '',
             title: contest.name ?? 'No Title',
-            isUpcoming: DateTime.fromMillisecondsSinceEpoch(contest.startTime! * 1000).isAfter(DateTime.now()),
+            isUpcoming: DateTime.fromMillisecondsSinceEpoch(
+              contest.startTime! * 1000,
+            ).isAfter(DateTime.now()),
             onContainerTap: () {
               print('Tapped on contest: ${contest.name}');
             },
