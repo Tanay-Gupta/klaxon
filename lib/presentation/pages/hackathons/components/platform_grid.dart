@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart'; // Required for context.go()
 
+import '../../../../infrastructure/models/platform_model.dart';
 import '../../../values/constants.dart';
 import '../../../values/platform_master.dart';
-import '../../../values/values.dart';
+
 
 class PlatformGrid extends StatelessWidget {
   const PlatformGrid({super.key});
@@ -53,14 +54,25 @@ class _PlatformIcon extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(10),
           onTap: () {
-            context.push('/platform/$name');
+            // context.push('/platform/$name');
+            context.push(
+              '/platform',
+              extra: {
+                'platformName': name,
+                'platformType': PlatformType.hackathon,
+              },
+            );
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPicture.asset(icon, height: 30, width: 30),
               const SizedBox(height: 6),
-              Text(name, style: gridIconTextStyle, textAlign: TextAlign.center),
+              Text(
+                platformDisplayNames[name] ?? "",
+                style: gridIconTextStyle,
+                textAlign: TextAlign.center,
+              ),
             ],
           ),
         ),

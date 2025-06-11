@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../../infrastructure/models/platform_model.dart';
 import '../../values/constants.dart';
 import 'components/body.dart';
 
 class PlatformDetailPage extends StatelessWidget {
   final String platformName;
-  const PlatformDetailPage({super.key, this.platformName = 'Error'});
+  final PlatformType platformType;
+  const PlatformDetailPage({super.key, required this.platformName , required this.platformType});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class PlatformDetailPage extends StatelessWidget {
         ],
       ),
       body: SafeArea(
-        child: PlatformDetailBody(platformName: platformName.toLowerCase()),
+        child: PlatformDetailBody(platformName: platformName.toLowerCase(), platformType: platformType,),
       ),
     );
   }

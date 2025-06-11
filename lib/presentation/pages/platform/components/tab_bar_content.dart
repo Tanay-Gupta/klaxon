@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../infrastructure/models/contest_model.dart';
+import '../../../../infrastructure/models/platform_model.dart';
 import '../../../../infrastructure/services/api/api_service.dart';
 import '../../../values/platform_master.dart';
 import '../../../values/values.dart';
@@ -8,30 +9,43 @@ import '../../homePage/components/listcontainer.dart';
 
 class TabBarContent extends StatefulWidget {
   final String platformName;
-  const TabBarContent({super.key, required this.platformName});
+  final PlatformType platformType;
+  const TabBarContent({super.key, required this.platformName, required this.platformType});
 
   @override
   State<TabBarContent> createState() => _TabBarContentState();
 }
 
 class _TabBarContentState extends State<TabBarContent> {
-  late Future<List<ContestModel>> _futureContests;
+
+  
+  late Future<List<dynamic>> _futureData;
   bool _isRefreshing = false;
   final ContestHuntApi _contestHuntApi = ContestHuntApi();
 
   @override
   void initState() {
     super.initState();
-    _futureContests = _contestHuntApi.fetchContests(platform: widget.platformName);
+    // _futureContests = _contestHuntApi.fetchContests(platform: widget.platformName);
+    _futureData= getPlatformDataFuture();
     
   }
-
+Future<List<dynamic>> getPlatformDataFuture() {
+    switch (widget.platformType) {
+      case PlatformType.contest:
+        return _contestHuntApi.fetchContests(platform: widget.platformName);
+      case PlatformType.hackathon:
+        return _contestHuntApi.fetchHackathons(platform: widget.platformName);
+      case PlatformType.bounty:
+        return _contestHuntApi.fetchBounties(platform: widget.platformName);
+    }
+  }
   Future<void> _refreshData() async {
     setState(() {
       _isRefreshing = true;
-      _futureContests = _contestHuntApi.fetchContests(platform: widget.platformName);
+      _futureData = getPlatformDataFuture();
     });
-    await _futureContests;
+    await _futureData;
     setState(() {
       _isRefreshing = false;
     });
@@ -39,8 +53,8 @@ class _TabBarContentState extends State<TabBarContent> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<ContestModel>>(
-      future: _futureContests,
+    return FutureBuilder<List<dynamic>>(
+      future: _futureData,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting && !_isRefreshing) {
           return const Center(child: CircularProgressIndicator());
@@ -72,7 +86,7 @@ class _TabBarContentState extends State<TabBarContent> {
     );
   }
 
-  Widget _buildContestList(List<ContestModel> contests) {
+  Widget _buildContestList(List<dynamic> contests) {
     return RefreshIndicator(
       onRefresh: _refreshData,
       child: ListView.builder(

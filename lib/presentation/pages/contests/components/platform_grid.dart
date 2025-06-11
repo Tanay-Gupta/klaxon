@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart'; // Required for context.go()
 
+import '../../../../infrastructure/models/platform_model.dart';
 import '../../../values/constants.dart';
 import '../../../values/platform_master.dart';
 
@@ -53,7 +54,13 @@ class _PlatformIcon extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(10),
           onTap: () {
-            context.push('/platform/$name');
+            context.push(
+              '/platform',
+              extra: {
+                'platformName': name,
+                'platformType': PlatformType.contest,
+              },
+            );
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

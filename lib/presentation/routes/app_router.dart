@@ -11,6 +11,7 @@ import 'package:klaxon/presentation/pages/errors/under_maintenance_screen.dart';
 import 'package:klaxon/presentation/pages/notifications/empty_notifications_screen.dart';
 import 'package:klaxon/presentation/pages/platform/platform_detail_page.dart';
 
+import '../../infrastructure/models/platform_model.dart';
 import '../pages/eventDetail/event_detail_page.dart';
 import '../widgets/contest_detail_page.dart';
 
@@ -55,16 +56,35 @@ final GoRouter router = GoRouter(
             child: const EmptyNotificationsScreen(),
           ),
     ),
+    // GoRoute(
+    //   path: '/platform/:name',
+    //   pageBuilder: (context, state) {
+    //     final platformName = state.pathParameters['name'] ?? 'Error';
+    //     return buildCustomTransitionPage(
+    //       key: state.pageKey,
+    //       child: PlatformDetailPage(platformName: platformName, platformType: PlatformType.contest), // Assuming PlatformType is an enum
+    //     );
+    //   },
+    // ),
     GoRoute(
-      path: '/platform/:name',
+      path: '/platform',
       pageBuilder: (context, state) {
-        final platformName = state.pathParameters['name'] ?? 'Error';
+        final args = state.extra as Map<String, dynamic>?;
+
+        final platformName = args?['platformName'] as String? ?? 'error';
+        final platformType =
+            args?['platformType'] as PlatformType? ?? PlatformType.contest;
+
         return buildCustomTransitionPage(
           key: state.pageKey,
-          child: PlatformDetailPage(platformName: platformName),
+          child: PlatformDetailPage(
+            platformName: platformName,
+            platformType: platformType,
+          ),
         );
       },
     ),
+
     GoRoute(
       path: '/no_connection',
       builder: (context, state) => const NoConnectionScreen(),
