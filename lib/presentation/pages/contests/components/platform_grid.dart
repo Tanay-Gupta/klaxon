@@ -3,7 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart'; // Required for context.go()
 
 import '../../../values/constants.dart';
-import '../../../values/values.dart';
+import '../../../values/platform_master.dart';
+
 
 class PlatformGrid extends StatelessWidget {
   const PlatformGrid({super.key});

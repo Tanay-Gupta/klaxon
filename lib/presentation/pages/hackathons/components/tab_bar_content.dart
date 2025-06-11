@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../infrastructure/models/hackathon_model.dart';
 import '../../../../infrastructure/services/api/api_service.dart';
+import '../../../values/platform_master.dart';
 import '../../../values/values.dart';
 import '../../homePage/components/listcontainer.dart';
 

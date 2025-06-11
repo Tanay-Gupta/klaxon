@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../infrastructure/models/contest_model.dart';
 import '../../../../infrastructure/services/api/api_service.dart';
+import '../../../values/platform_master.dart';
 import '../../../values/values.dart';
 import '../../homePage/components/listcontainer.dart';
 // Make sure your dummyData is in this path
