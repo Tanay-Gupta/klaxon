@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:intl/intl.dart';
-import 'package:klaxon/presentation/pages/eventDetail/components/event_action_button.dart';
-
-import '../../../../infrastructure/models/contest_model.dart';
+import 'package:klaxon/infrastructure/models/hackathon_model.dart';
+import 'package:klaxon/presentation/widgets/event_action_button.dart';
 import '../../../values/constants.dart';
 import '../../../values/platform_master.dart';
-import 'event_reminder_row.dart';
+import '../../../widgets/event_reminder_row.dart';
 
 // 📝 Main Event Detail Body Widget
-class EventDetailBody extends StatelessWidget {
-  final ContestModel contest;
+class HackathonDetailBody extends StatelessWidget {
+  final HackathonModel contest;
 
-  const EventDetailBody({super.key, required this.contest});
+  const HackathonDetailBody({super.key, required this.contest});
 
   // 🕒 Format timestamp to readable string
   String formatTimestamp(int timestamp) {
@@ -53,7 +52,7 @@ class EventDetailBody extends StatelessWidget {
             startTime,
             style: kH1SubHeadingtextStyle.copyWith(color: Colors.white),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
 
           // 🕔 End Time
           Text("End Time", style: kH1SubHeadingtextStyle),
@@ -62,13 +61,21 @@ class EventDetailBody extends StatelessWidget {
             endTime,
             style: kH1SubHeadingtextStyle.copyWith(color: Colors.white),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
 
           // ⏱ Duration
           Text("Duration", style: kH1SubHeadingtextStyle),
           const SizedBox(height: 5),
           Text(
             duration,
+            style: kH1SubHeadingtextStyle.copyWith(color: Colors.white),
+          ),
+           const SizedBox(height: 10),
+          // ⏱ Mode
+          Text("Hackathon mode", style: kH1SubHeadingtextStyle),
+          const SizedBox(height: 5),
+          Text(
+            contest.mode??"N/A",
             style: kH1SubHeadingtextStyle.copyWith(color: Colors.white),
           ),
           Divider(color: kNavUnselectedIconColor, thickness: 1),

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import '../../../../infrastructure/models/bounty_model.dart';
 import '../../../../infrastructure/models/contest_model.dart';
+import '../../../../infrastructure/models/hackathon_model.dart';
 import '../../../../infrastructure/models/platform_model.dart';
 import '../../../../infrastructure/services/api/api_service.dart';
 import '../../../values/platform_master.dart';
 import '../../../values/values.dart';
+import '../../../widgets/bounty_list_container.dart';
 import '../../../widgets/contest_list_container.dart';
+import '../../../widgets/hackathon_list_container.dart';
 import '../../homePage/components/listcontainer.dart';
 // Make sure your dummyData is in this path
 
@@ -93,7 +97,10 @@ class _TabBarContentState extends State<TabBarContent> {
 
           return TabBarView(
             physics: const BouncingScrollPhysics(),
-            children: [_buildContestList(upcoming, widget.platformType), _buildContestList(ongoing, widget.platformType)],
+            children: [
+              _buildContestList(upcoming, widget.platformType),
+              _buildContestList(ongoing, widget.platformType),
+            ],
           );
         }
       },
@@ -109,8 +116,7 @@ class _TabBarContentState extends State<TabBarContent> {
         itemBuilder: (context, index) {
           final contest = contests[index];
           if (platformType == PlatformType.contest) {
-
-            ContestModel temp=contest;
+            ContestModel temp = contest;
             return ContestListContainer(
               contestModel: temp,
               imgPath: platformLogos[contest.platform] ?? '',
@@ -118,30 +124,27 @@ class _TabBarContentState extends State<TabBarContent> {
                 contest.startTime! * 1000,
               ).isAfter(DateTime.now()),
             );
+          } else if (platformType == PlatformType.hackathon) {
+            HackathonModel temp = contest;
+            return HackathonListContainer(
+              hackathonModel: temp,
+              imgPath: platformLogos[contest.platform] ?? '',
+              isUpcoming: DateTime.fromMillisecondsSinceEpoch(
+                contest.startTime! * 1000,
+              ).isAfter(DateTime.now()),
+            );
           }
-          return ListContainer(
-            startTime:
-                DateTime.fromMillisecondsSinceEpoch(
-                  contest.startTime! * 1000,
-                ).toIso8601String(),
-            endTime:
-                DateTime.fromMillisecondsSinceEpoch(
-                  contest.endTime! * 1000,
-                ).toIso8601String(),
-            imgUrl:
+          // If it's a bounty, return a bounty list container
+          BountyModel bountyModel = contest;
+          return BountyListContainer(
+            bountyModel: bountyModel,
+            imgPath:
                 platformLogos[contest.platform] ??
                 '', // Backup URL if not found
-            contestUrl: contest.url ?? '',
-            title: contest.name ?? 'No Title',
+
             isUpcoming: DateTime.fromMillisecondsSinceEpoch(
               contest.startTime! * 1000,
             ).isAfter(DateTime.now()),
-            onContainerTap: () {
-              print('Tapped on contest: ${contest.name}');
-            },
-            onShareTap: () {
-              print('Share tapped for contest: ${contest.name}');
-            },
           );
         },
       ),

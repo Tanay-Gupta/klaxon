@@ -4,6 +4,7 @@ import '../../../../infrastructure/models/hackathon_model.dart';
 import '../../../../infrastructure/services/api/api_service.dart';
 import '../../../values/platform_master.dart';
 import '../../../values/values.dart';
+import '../../../widgets/hackathon_list_container.dart';
 import '../../homePage/components/listcontainer.dart';
 
 class TabBarContent extends StatefulWidget {
@@ -64,52 +65,49 @@ class _TabBarContentState extends State<TabBarContent> {
           );
         }
 
-        final filtered = snapshot.data!
-            .where((hackathon) => (isUpcoming
-                ? hackathon.startTime! * 1000 > DateTime.now().millisecondsSinceEpoch
-                : hackathon.startTime! * 1000 <= DateTime.now().millisecondsSinceEpoch))
-            .toList();
+        final filtered =
+            snapshot.data!
+                .where(
+                  (hackathon) =>
+                      (isUpcoming
+                          ? hackathon.startTime! * 1000 >
+                              DateTime.now().millisecondsSinceEpoch
+                          : hackathon.startTime! * 1000 <=
+                              DateTime.now().millisecondsSinceEpoch),
+                )
+                .toList();
 
         return RefreshIndicator(
           onRefresh: _refresh,
-          child: filtered.isEmpty
-              ? ListView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  children: const [
-                    Center(
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 100),
-                        child: Text(noHackathonsFound),
+          child:
+              filtered.isEmpty
+                  ? ListView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    children: const [
+                      Center(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 100),
+                          child: Text(noHackathonsFound),
+                        ),
                       ),
-                    ),
-                  ],
-                )
-              : ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: filtered.length,
-                  itemBuilder: (context, index) {
-                    final hackathon = filtered[index];
-                    return ListContainer(
-                      startTime: DateTime.fromMillisecondsSinceEpoch(
-                              hackathon.startTime! * 1000)
-                          .toIso8601String(),
-                      endTime: DateTime.fromMillisecondsSinceEpoch(
-                              hackathon.endTime! * 1000)
-                          .toIso8601String(),
-                      imgUrl:
-                         platformLogos[hackathon.platform] ?? '$hackathon.platform',
-                      contestUrl: hackathon.url ?? '',
-                      title: hackathon.name ?? 'Untitled Hackathon',
-                      isUpcoming: isUpcoming,
-                      onContainerTap: () {
-                        print('Tapped on hackathon: ${hackathon.name}');
-                      },
-                      onShareTap: () {
-                        print('Share tapped for hackathon: ${hackathon.name}');
-                      },
-                    );
-                  },
-                ),
+                    ],
+                  )
+                  : ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: filtered.length,
+                    itemBuilder: (context, index) {
+                      final hackathon = filtered[index];
+
+                      return HackathonListContainer(
+                        hackathonModel: hackathon,
+                        imgPath:
+                            platformLogos[hackathon.platform] ??
+                            '$hackathon.platform',
+
+                        isUpcoming: isUpcoming,
+                      );
+                    },
+                  ),
         );
       },
     );

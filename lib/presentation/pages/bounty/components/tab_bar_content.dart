@@ -54,6 +54,7 @@ import '../../../../infrastructure/models/bounty_model.dart';
 import '../../../../infrastructure/services/api/api_service.dart';
 import '../../../values/platform_master.dart';
 import '../../../values/values.dart';
+import '../../../widgets/bounty_list_container.dart';
 import '../../homePage/components/listcontainer.dart';
 
 class TabBarContent extends StatefulWidget {
@@ -89,78 +90,71 @@ class _TabBarContentState extends State<TabBarContent> {
     );
   }
 
-Widget _buildBountyList({required bool isPaid}) {
-  return FutureBuilder<List<BountyModel>>(
-    future: _bountiesFuture,
-    builder: (context, snapshot) {
-      if (snapshot.connectionState == ConnectionState.waiting) {
-        return const Center(child: CircularProgressIndicator());
-      }
+  Widget _buildBountyList({required bool isPaid}) {
+    return FutureBuilder<List<BountyModel>>(
+      future: _bountiesFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
 
-      if (snapshot.hasError) {
+        if (snapshot.hasError) {
+          return RefreshIndicator(
+            onRefresh: _refresh,
+            child: ListView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              children: const [
+                Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 100),
+                    child: Text(apiErrorMessage),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
+
+        final filtered =
+            snapshot.data!
+                .where(
+                  (bounty) =>
+                      (isPaid ? bounty.amount! > 0 : bounty.amount == 0),
+                )
+                .toList();
+
         return RefreshIndicator(
           onRefresh: _refresh,
-          child: ListView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            children: const [
-              Center(
-                child: Padding(
-                  padding: EdgeInsets.only(top: 100),
-                  child: Text(apiErrorMessage),
-                ),
-              ),
-            ],
-          ),
-        );
-      }
+          child:
+              filtered.isEmpty
+                  ? ListView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    children: const [
+                      Center(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 100),
+                          child: Text(noBountiesFound),
+                        ),
+                      ),
+                    ],
+                  )
+                  : ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: filtered.length,
+                    itemBuilder: (context, index) {
+                      final bounty = filtered[index];
+                      return BountyListContainer(
+                        bountyModel: bounty,
+                        imgPath:
+                            platformLogos[bounty.platform] ??
+                            '$bounty.platform',
 
-      final filtered = snapshot.data!
-          .where((bounty) => (isPaid ? bounty.amount! >0 : bounty.amount == 0))
-          .toList();
-
-      return RefreshIndicator(
-        onRefresh: _refresh,
-        child: filtered.isEmpty
-            ? ListView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                children: const [
-                  Center(
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 100),
-                      child: Text(noBountiesFound),
-                    ),
+                        isUpcoming: true,
+                      );
+                    },
                   ),
-                ],
-              )
-            : ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemCount: filtered.length,
-                itemBuilder: (context, index) {
-                  final bounty = filtered[index];
-                  return ListContainer(
-                    startTime: DateTime.fromMillisecondsSinceEpoch(
-                            bounty.startTime! * 1000)
-                        .toIso8601String(),
-                    endTime: DateTime.fromMillisecondsSinceEpoch(
-                            bounty.endTime! * 1000)
-                        .toIso8601String(),
-                    imgUrl: platformLogos[bounty.platform] ?? '$bounty.platform',
-                    contestUrl: bounty.url ?? '',
-                    title: bounty.name ?? 'Untitled Bounty',
-                    isUpcoming: true,
-                    onContainerTap: () {
-                      print('Tapped on bounty: ${bounty.name}');
-                    },
-                    onShareTap: () {
-                      print('Share tapped for bounty: ${bounty.name}');
-                    },
-                  );
-                },
-              ),
-      );
-    },
-  );
-}
-
-
+        );
+      },
+    );
+  }
 }
