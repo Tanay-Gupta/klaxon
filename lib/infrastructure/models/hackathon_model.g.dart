@@ -21,16 +21,16 @@ _$HackathonModelImpl _$$HackathonModelImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$HackathonModelImplToJson(
-  _$HackathonModelImpl instance,
-) => <String, dynamic>{
-  'created_at': instance.createdAt,
-  'description': instance.description,
-  'duration': instance.duration,
-  'end_time': instance.endTime,
-  'id': instance.id,
-  'mode': instance.mode,
-  'name': instance.name,
-  'platform': instance.platform,
-  'start_time': instance.startTime,
-  'url': instance.url,
-};
+        _$HackathonModelImpl instance) =>
+    <String, dynamic>{
+      'created_at': instance.createdAt,
+      'description': instance.description,
+      'duration': instance.duration,
+      'end_time': instance.endTime,
+      'id': instance.id,
+      'mode': instance.mode,
+      'name': instance.name,
+      'platform': instance.platform,
+      'start_time': instance.startTime,
+      'url': instance.url,
+    };

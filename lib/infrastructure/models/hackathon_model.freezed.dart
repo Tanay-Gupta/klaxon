@@ -12,8 +12,7 @@ part of 'hackathon_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 HackathonModel _$HackathonModelFromJson(Map<String, dynamic> json) {
   return _HackathonModel.fromJson(json);
@@ -48,22 +47,20 @@ mixin _$HackathonModel {
 /// @nodoc
 abstract class $HackathonModelCopyWith<$Res> {
   factory $HackathonModelCopyWith(
-    HackathonModel value,
-    $Res Function(HackathonModel) then,
-  ) = _$HackathonModelCopyWithImpl<$Res, HackathonModel>;
+          HackathonModel value, $Res Function(HackathonModel) then) =
+      _$HackathonModelCopyWithImpl<$Res, HackathonModel>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'created_at') String? createdAt,
-    String? description,
-    int? duration,
-    @JsonKey(name: 'end_time') int? endTime,
-    int? id,
-    String? mode,
-    String? name,
-    String? platform,
-    @JsonKey(name: 'start_time') int? startTime,
-    String? url,
-  });
+  $Res call(
+      {@JsonKey(name: 'created_at') String? createdAt,
+      String? description,
+      int? duration,
+      @JsonKey(name: 'end_time') int? endTime,
+      int? id,
+      String? mode,
+      String? name,
+      String? platform,
+      @JsonKey(name: 'start_time') int? startTime,
+      String? url});
 }
 
 /// @nodoc
@@ -92,85 +89,70 @@ class _$HackathonModelCopyWithImpl<$Res, $Val extends HackathonModel>
     Object? startTime = freezed,
     Object? url = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            createdAt:
-                freezed == createdAt
-                    ? _value.createdAt
-                    : createdAt // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            description:
-                freezed == description
-                    ? _value.description
-                    : description // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            duration:
-                freezed == duration
-                    ? _value.duration
-                    : duration // ignore: cast_nullable_to_non_nullable
-                        as int?,
-            endTime:
-                freezed == endTime
-                    ? _value.endTime
-                    : endTime // ignore: cast_nullable_to_non_nullable
-                        as int?,
-            id:
-                freezed == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
-                        as int?,
-            mode:
-                freezed == mode
-                    ? _value.mode
-                    : mode // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            name:
-                freezed == name
-                    ? _value.name
-                    : name // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            platform:
-                freezed == platform
-                    ? _value.platform
-                    : platform // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            startTime:
-                freezed == startTime
-                    ? _value.startTime
-                    : startTime // ignore: cast_nullable_to_non_nullable
-                        as int?,
-            url:
-                freezed == url
-                    ? _value.url
-                    : url // ignore: cast_nullable_to_non_nullable
-                        as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      duration: freezed == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int?,
+      endTime: freezed == endTime
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as int?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      mode: freezed == mode
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      platform: freezed == platform
+          ? _value.platform
+          : platform // ignore: cast_nullable_to_non_nullable
+              as String?,
+      startTime: freezed == startTime
+          ? _value.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
+              as int?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$HackathonModelImplCopyWith<$Res>
     implements $HackathonModelCopyWith<$Res> {
-  factory _$$HackathonModelImplCopyWith(
-    _$HackathonModelImpl value,
-    $Res Function(_$HackathonModelImpl) then,
-  ) = __$$HackathonModelImplCopyWithImpl<$Res>;
+  factory _$$HackathonModelImplCopyWith(_$HackathonModelImpl value,
+          $Res Function(_$HackathonModelImpl) then) =
+      __$$HackathonModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'created_at') String? createdAt,
-    String? description,
-    int? duration,
-    @JsonKey(name: 'end_time') int? endTime,
-    int? id,
-    String? mode,
-    String? name,
-    String? platform,
-    @JsonKey(name: 'start_time') int? startTime,
-    String? url,
-  });
+  $Res call(
+      {@JsonKey(name: 'created_at') String? createdAt,
+      String? description,
+      int? duration,
+      @JsonKey(name: 'end_time') int? endTime,
+      int? id,
+      String? mode,
+      String? name,
+      String? platform,
+      @JsonKey(name: 'start_time') int? startTime,
+      String? url});
 }
 
 /// @nodoc
@@ -178,9 +160,8 @@ class __$$HackathonModelImplCopyWithImpl<$Res>
     extends _$HackathonModelCopyWithImpl<$Res, _$HackathonModelImpl>
     implements _$$HackathonModelImplCopyWith<$Res> {
   __$$HackathonModelImplCopyWithImpl(
-    _$HackathonModelImpl _value,
-    $Res Function(_$HackathonModelImpl) _then,
-  ) : super(_value, _then);
+      _$HackathonModelImpl _value, $Res Function(_$HackathonModelImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of HackathonModel
   /// with the given fields replaced by the non-null parameter values.
@@ -198,78 +179,65 @@ class __$$HackathonModelImplCopyWithImpl<$Res>
     Object? startTime = freezed,
     Object? url = freezed,
   }) {
-    return _then(
-      _$HackathonModelImpl(
-        createdAt:
-            freezed == createdAt
-                ? _value.createdAt
-                : createdAt // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        description:
-            freezed == description
-                ? _value.description
-                : description // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        duration:
-            freezed == duration
-                ? _value.duration
-                : duration // ignore: cast_nullable_to_non_nullable
-                    as int?,
-        endTime:
-            freezed == endTime
-                ? _value.endTime
-                : endTime // ignore: cast_nullable_to_non_nullable
-                    as int?,
-        id:
-            freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                    as int?,
-        mode:
-            freezed == mode
-                ? _value.mode
-                : mode // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        name:
-            freezed == name
-                ? _value.name
-                : name // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        platform:
-            freezed == platform
-                ? _value.platform
-                : platform // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        startTime:
-            freezed == startTime
-                ? _value.startTime
-                : startTime // ignore: cast_nullable_to_non_nullable
-                    as int?,
-        url:
-            freezed == url
-                ? _value.url
-                : url // ignore: cast_nullable_to_non_nullable
-                    as String?,
-      ),
-    );
+    return _then(_$HackathonModelImpl(
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      duration: freezed == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int?,
+      endTime: freezed == endTime
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as int?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      mode: freezed == mode
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      platform: freezed == platform
+          ? _value.platform
+          : platform // ignore: cast_nullable_to_non_nullable
+              as String?,
+      startTime: freezed == startTime
+          ? _value.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
+              as int?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$HackathonModelImpl implements _HackathonModel {
-  const _$HackathonModelImpl({
-    @JsonKey(name: 'created_at') this.createdAt,
-    this.description,
-    this.duration,
-    @JsonKey(name: 'end_time') this.endTime,
-    this.id,
-    this.mode,
-    this.name,
-    this.platform,
-    @JsonKey(name: 'start_time') this.startTime,
-    this.url,
-  });
+  const _$HackathonModelImpl(
+      {@JsonKey(name: 'created_at') this.createdAt,
+      this.description,
+      this.duration,
+      @JsonKey(name: 'end_time') this.endTime,
+      this.id,
+      this.mode,
+      this.name,
+      this.platform,
+      @JsonKey(name: 'start_time') this.startTime,
+      this.url});
 
   factory _$HackathonModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$HackathonModelImplFromJson(json);
@@ -327,19 +295,8 @@ class _$HackathonModelImpl implements _HackathonModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    createdAt,
-    description,
-    duration,
-    endTime,
-    id,
-    mode,
-    name,
-    platform,
-    startTime,
-    url,
-  );
+  int get hashCode => Object.hash(runtimeType, createdAt, description, duration,
+      endTime, id, mode, name, platform, startTime, url);
 
   /// Create a copy of HackathonModel
   /// with the given fields replaced by the non-null parameter values.
@@ -348,29 +305,28 @@ class _$HackathonModelImpl implements _HackathonModel {
   @pragma('vm:prefer-inline')
   _$$HackathonModelImplCopyWith<_$HackathonModelImpl> get copyWith =>
       __$$HackathonModelImplCopyWithImpl<_$HackathonModelImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$HackathonModelImplToJson(this);
+    return _$$HackathonModelImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _HackathonModel implements HackathonModel {
-  const factory _HackathonModel({
-    @JsonKey(name: 'created_at') final String? createdAt,
-    final String? description,
-    final int? duration,
-    @JsonKey(name: 'end_time') final int? endTime,
-    final int? id,
-    final String? mode,
-    final String? name,
-    final String? platform,
-    @JsonKey(name: 'start_time') final int? startTime,
-    final String? url,
-  }) = _$HackathonModelImpl;
+  const factory _HackathonModel(
+      {@JsonKey(name: 'created_at') final String? createdAt,
+      final String? description,
+      final int? duration,
+      @JsonKey(name: 'end_time') final int? endTime,
+      final int? id,
+      final String? mode,
+      final String? name,
+      final String? platform,
+      @JsonKey(name: 'start_time') final int? startTime,
+      final String? url}) = _$HackathonModelImpl;
 
   factory _HackathonModel.fromJson(Map<String, dynamic> json) =
       _$HackathonModelImpl.fromJson;

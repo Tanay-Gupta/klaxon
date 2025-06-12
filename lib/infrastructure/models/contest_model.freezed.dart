@@ -12,8 +12,7 @@ part of 'contest_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ContestModel _$ContestModelFromJson(Map<String, dynamic> json) {
   return _ContestModel.fromJson(json);
@@ -47,21 +46,19 @@ mixin _$ContestModel {
 /// @nodoc
 abstract class $ContestModelCopyWith<$Res> {
   factory $ContestModelCopyWith(
-    ContestModel value,
-    $Res Function(ContestModel) then,
-  ) = _$ContestModelCopyWithImpl<$Res, ContestModel>;
+          ContestModel value, $Res Function(ContestModel) then) =
+      _$ContestModelCopyWithImpl<$Res, ContestModel>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'created_at') String? createdAt,
-    String? description,
-    int? duration,
-    @JsonKey(name: 'end_time') int? endTime,
-    int? id,
-    String? name,
-    String? platform,
-    @JsonKey(name: 'start_time') int? startTime,
-    String? url,
-  });
+  $Res call(
+      {@JsonKey(name: 'created_at') String? createdAt,
+      String? description,
+      int? duration,
+      @JsonKey(name: 'end_time') int? endTime,
+      int? id,
+      String? name,
+      String? platform,
+      @JsonKey(name: 'start_time') int? startTime,
+      String? url});
 }
 
 /// @nodoc
@@ -89,56 +86,44 @@ class _$ContestModelCopyWithImpl<$Res, $Val extends ContestModel>
     Object? startTime = freezed,
     Object? url = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            createdAt:
-                freezed == createdAt
-                    ? _value.createdAt
-                    : createdAt // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            description:
-                freezed == description
-                    ? _value.description
-                    : description // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            duration:
-                freezed == duration
-                    ? _value.duration
-                    : duration // ignore: cast_nullable_to_non_nullable
-                        as int?,
-            endTime:
-                freezed == endTime
-                    ? _value.endTime
-                    : endTime // ignore: cast_nullable_to_non_nullable
-                        as int?,
-            id:
-                freezed == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
-                        as int?,
-            name:
-                freezed == name
-                    ? _value.name
-                    : name // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            platform:
-                freezed == platform
-                    ? _value.platform
-                    : platform // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            startTime:
-                freezed == startTime
-                    ? _value.startTime
-                    : startTime // ignore: cast_nullable_to_non_nullable
-                        as int?,
-            url:
-                freezed == url
-                    ? _value.url
-                    : url // ignore: cast_nullable_to_non_nullable
-                        as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      duration: freezed == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int?,
+      endTime: freezed == endTime
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as int?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      platform: freezed == platform
+          ? _value.platform
+          : platform // ignore: cast_nullable_to_non_nullable
+              as String?,
+      startTime: freezed == startTime
+          ? _value.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
+              as int?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
@@ -146,22 +131,20 @@ class _$ContestModelCopyWithImpl<$Res, $Val extends ContestModel>
 abstract class _$$ContestModelImplCopyWith<$Res>
     implements $ContestModelCopyWith<$Res> {
   factory _$$ContestModelImplCopyWith(
-    _$ContestModelImpl value,
-    $Res Function(_$ContestModelImpl) then,
-  ) = __$$ContestModelImplCopyWithImpl<$Res>;
+          _$ContestModelImpl value, $Res Function(_$ContestModelImpl) then) =
+      __$$ContestModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'created_at') String? createdAt,
-    String? description,
-    int? duration,
-    @JsonKey(name: 'end_time') int? endTime,
-    int? id,
-    String? name,
-    String? platform,
-    @JsonKey(name: 'start_time') int? startTime,
-    String? url,
-  });
+  $Res call(
+      {@JsonKey(name: 'created_at') String? createdAt,
+      String? description,
+      int? duration,
+      @JsonKey(name: 'end_time') int? endTime,
+      int? id,
+      String? name,
+      String? platform,
+      @JsonKey(name: 'start_time') int? startTime,
+      String? url});
 }
 
 /// @nodoc
@@ -169,9 +152,8 @@ class __$$ContestModelImplCopyWithImpl<$Res>
     extends _$ContestModelCopyWithImpl<$Res, _$ContestModelImpl>
     implements _$$ContestModelImplCopyWith<$Res> {
   __$$ContestModelImplCopyWithImpl(
-    _$ContestModelImpl _value,
-    $Res Function(_$ContestModelImpl) _then,
-  ) : super(_value, _then);
+      _$ContestModelImpl _value, $Res Function(_$ContestModelImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of ContestModel
   /// with the given fields replaced by the non-null parameter values.
@@ -188,72 +170,60 @@ class __$$ContestModelImplCopyWithImpl<$Res>
     Object? startTime = freezed,
     Object? url = freezed,
   }) {
-    return _then(
-      _$ContestModelImpl(
-        createdAt:
-            freezed == createdAt
-                ? _value.createdAt
-                : createdAt // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        description:
-            freezed == description
-                ? _value.description
-                : description // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        duration:
-            freezed == duration
-                ? _value.duration
-                : duration // ignore: cast_nullable_to_non_nullable
-                    as int?,
-        endTime:
-            freezed == endTime
-                ? _value.endTime
-                : endTime // ignore: cast_nullable_to_non_nullable
-                    as int?,
-        id:
-            freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                    as int?,
-        name:
-            freezed == name
-                ? _value.name
-                : name // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        platform:
-            freezed == platform
-                ? _value.platform
-                : platform // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        startTime:
-            freezed == startTime
-                ? _value.startTime
-                : startTime // ignore: cast_nullable_to_non_nullable
-                    as int?,
-        url:
-            freezed == url
-                ? _value.url
-                : url // ignore: cast_nullable_to_non_nullable
-                    as String?,
-      ),
-    );
+    return _then(_$ContestModelImpl(
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      duration: freezed == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int?,
+      endTime: freezed == endTime
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as int?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      platform: freezed == platform
+          ? _value.platform
+          : platform // ignore: cast_nullable_to_non_nullable
+              as String?,
+      startTime: freezed == startTime
+          ? _value.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
+              as int?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$ContestModelImpl implements _ContestModel {
-  const _$ContestModelImpl({
-    @JsonKey(name: 'created_at') this.createdAt,
-    this.description,
-    this.duration,
-    @JsonKey(name: 'end_time') this.endTime,
-    this.id,
-    this.name,
-    this.platform,
-    @JsonKey(name: 'start_time') this.startTime,
-    this.url,
-  });
+  const _$ContestModelImpl(
+      {@JsonKey(name: 'created_at') this.createdAt,
+      this.description,
+      this.duration,
+      @JsonKey(name: 'end_time') this.endTime,
+      this.id,
+      this.name,
+      this.platform,
+      @JsonKey(name: 'start_time') this.startTime,
+      this.url});
 
   factory _$ContestModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ContestModelImplFromJson(json);
@@ -308,18 +278,8 @@ class _$ContestModelImpl implements _ContestModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    createdAt,
-    description,
-    duration,
-    endTime,
-    id,
-    name,
-    platform,
-    startTime,
-    url,
-  );
+  int get hashCode => Object.hash(runtimeType, createdAt, description, duration,
+      endTime, id, name, platform, startTime, url);
 
   /// Create a copy of ContestModel
   /// with the given fields replaced by the non-null parameter values.
@@ -331,22 +291,23 @@ class _$ContestModelImpl implements _ContestModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ContestModelImplToJson(this);
+    return _$$ContestModelImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _ContestModel implements ContestModel {
-  const factory _ContestModel({
-    @JsonKey(name: 'created_at') final String? createdAt,
-    final String? description,
-    final int? duration,
-    @JsonKey(name: 'end_time') final int? endTime,
-    final int? id,
-    final String? name,
-    final String? platform,
-    @JsonKey(name: 'start_time') final int? startTime,
-    final String? url,
-  }) = _$ContestModelImpl;
+  const factory _ContestModel(
+      {@JsonKey(name: 'created_at') final String? createdAt,
+      final String? description,
+      final int? duration,
+      @JsonKey(name: 'end_time') final int? endTime,
+      final int? id,
+      final String? name,
+      final String? platform,
+      @JsonKey(name: 'start_time') final int? startTime,
+      final String? url}) = _$ContestModelImpl;
 
   factory _ContestModel.fromJson(Map<String, dynamic> json) =
       _$ContestModelImpl.fromJson;

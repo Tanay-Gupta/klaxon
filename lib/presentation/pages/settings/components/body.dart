@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import '../../../values/constants.dart';
 import 'about_page.dart';
 import 'setting_tile.dart';
@@ -112,10 +113,12 @@ class _SettingsBodyState extends State<SettingsBody> {
           const SizedBox(height: 24),
           InkWell(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const AboutPage()),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => const AboutPage()),
+              // );
+
+              context.push('/scheduledNotifications');
             },
             child: SettingTile(
               title: 'About',

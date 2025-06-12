@@ -12,8 +12,7 @@ part of 'bounty_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 BountyModel _$BountyModelFromJson(Map<String, dynamic> json) {
   return _BountyModel.fromJson(json);
@@ -49,23 +48,21 @@ mixin _$BountyModel {
 /// @nodoc
 abstract class $BountyModelCopyWith<$Res> {
   factory $BountyModelCopyWith(
-    BountyModel value,
-    $Res Function(BountyModel) then,
-  ) = _$BountyModelCopyWithImpl<$Res, BountyModel>;
+          BountyModel value, $Res Function(BountyModel) then) =
+      _$BountyModelCopyWithImpl<$Res, BountyModel>;
   @useResult
-  $Res call({
-    int? amount,
-    @JsonKey(name: 'created_at') String? createdAt,
-    String? description,
-    int? duration,
-    @JsonKey(name: 'end_time') int? endTime,
-    int? id,
-    String? name,
-    bool? paid,
-    String? platform,
-    @JsonKey(name: 'start_time') int? startTime,
-    String? url,
-  });
+  $Res call(
+      {int? amount,
+      @JsonKey(name: 'created_at') String? createdAt,
+      String? description,
+      int? duration,
+      @JsonKey(name: 'end_time') int? endTime,
+      int? id,
+      String? name,
+      bool? paid,
+      String? platform,
+      @JsonKey(name: 'start_time') int? startTime,
+      String? url});
 }
 
 /// @nodoc
@@ -95,66 +92,52 @@ class _$BountyModelCopyWithImpl<$Res, $Val extends BountyModel>
     Object? startTime = freezed,
     Object? url = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            amount:
-                freezed == amount
-                    ? _value.amount
-                    : amount // ignore: cast_nullable_to_non_nullable
-                        as int?,
-            createdAt:
-                freezed == createdAt
-                    ? _value.createdAt
-                    : createdAt // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            description:
-                freezed == description
-                    ? _value.description
-                    : description // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            duration:
-                freezed == duration
-                    ? _value.duration
-                    : duration // ignore: cast_nullable_to_non_nullable
-                        as int?,
-            endTime:
-                freezed == endTime
-                    ? _value.endTime
-                    : endTime // ignore: cast_nullable_to_non_nullable
-                        as int?,
-            id:
-                freezed == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
-                        as int?,
-            name:
-                freezed == name
-                    ? _value.name
-                    : name // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            paid:
-                freezed == paid
-                    ? _value.paid
-                    : paid // ignore: cast_nullable_to_non_nullable
-                        as bool?,
-            platform:
-                freezed == platform
-                    ? _value.platform
-                    : platform // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            startTime:
-                freezed == startTime
-                    ? _value.startTime
-                    : startTime // ignore: cast_nullable_to_non_nullable
-                        as int?,
-            url:
-                freezed == url
-                    ? _value.url
-                    : url // ignore: cast_nullable_to_non_nullable
-                        as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      amount: freezed == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      duration: freezed == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int?,
+      endTime: freezed == endTime
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as int?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paid: freezed == paid
+          ? _value.paid
+          : paid // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      platform: freezed == platform
+          ? _value.platform
+          : platform // ignore: cast_nullable_to_non_nullable
+              as String?,
+      startTime: freezed == startTime
+          ? _value.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
+              as int?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
@@ -162,24 +145,22 @@ class _$BountyModelCopyWithImpl<$Res, $Val extends BountyModel>
 abstract class _$$BountyModelImplCopyWith<$Res>
     implements $BountyModelCopyWith<$Res> {
   factory _$$BountyModelImplCopyWith(
-    _$BountyModelImpl value,
-    $Res Function(_$BountyModelImpl) then,
-  ) = __$$BountyModelImplCopyWithImpl<$Res>;
+          _$BountyModelImpl value, $Res Function(_$BountyModelImpl) then) =
+      __$$BountyModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    int? amount,
-    @JsonKey(name: 'created_at') String? createdAt,
-    String? description,
-    int? duration,
-    @JsonKey(name: 'end_time') int? endTime,
-    int? id,
-    String? name,
-    bool? paid,
-    String? platform,
-    @JsonKey(name: 'start_time') int? startTime,
-    String? url,
-  });
+  $Res call(
+      {int? amount,
+      @JsonKey(name: 'created_at') String? createdAt,
+      String? description,
+      int? duration,
+      @JsonKey(name: 'end_time') int? endTime,
+      int? id,
+      String? name,
+      bool? paid,
+      String? platform,
+      @JsonKey(name: 'start_time') int? startTime,
+      String? url});
 }
 
 /// @nodoc
@@ -187,9 +168,8 @@ class __$$BountyModelImplCopyWithImpl<$Res>
     extends _$BountyModelCopyWithImpl<$Res, _$BountyModelImpl>
     implements _$$BountyModelImplCopyWith<$Res> {
   __$$BountyModelImplCopyWithImpl(
-    _$BountyModelImpl _value,
-    $Res Function(_$BountyModelImpl) _then,
-  ) : super(_value, _then);
+      _$BountyModelImpl _value, $Res Function(_$BountyModelImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of BountyModel
   /// with the given fields replaced by the non-null parameter values.
@@ -208,84 +188,70 @@ class __$$BountyModelImplCopyWithImpl<$Res>
     Object? startTime = freezed,
     Object? url = freezed,
   }) {
-    return _then(
-      _$BountyModelImpl(
-        amount:
-            freezed == amount
-                ? _value.amount
-                : amount // ignore: cast_nullable_to_non_nullable
-                    as int?,
-        createdAt:
-            freezed == createdAt
-                ? _value.createdAt
-                : createdAt // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        description:
-            freezed == description
-                ? _value.description
-                : description // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        duration:
-            freezed == duration
-                ? _value.duration
-                : duration // ignore: cast_nullable_to_non_nullable
-                    as int?,
-        endTime:
-            freezed == endTime
-                ? _value.endTime
-                : endTime // ignore: cast_nullable_to_non_nullable
-                    as int?,
-        id:
-            freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                    as int?,
-        name:
-            freezed == name
-                ? _value.name
-                : name // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        paid:
-            freezed == paid
-                ? _value.paid
-                : paid // ignore: cast_nullable_to_non_nullable
-                    as bool?,
-        platform:
-            freezed == platform
-                ? _value.platform
-                : platform // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        startTime:
-            freezed == startTime
-                ? _value.startTime
-                : startTime // ignore: cast_nullable_to_non_nullable
-                    as int?,
-        url:
-            freezed == url
-                ? _value.url
-                : url // ignore: cast_nullable_to_non_nullable
-                    as String?,
-      ),
-    );
+    return _then(_$BountyModelImpl(
+      amount: freezed == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      duration: freezed == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int?,
+      endTime: freezed == endTime
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as int?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paid: freezed == paid
+          ? _value.paid
+          : paid // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      platform: freezed == platform
+          ? _value.platform
+          : platform // ignore: cast_nullable_to_non_nullable
+              as String?,
+      startTime: freezed == startTime
+          ? _value.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
+              as int?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$BountyModelImpl implements _BountyModel {
-  const _$BountyModelImpl({
-    this.amount,
-    @JsonKey(name: 'created_at') this.createdAt,
-    this.description,
-    this.duration,
-    @JsonKey(name: 'end_time') this.endTime,
-    this.id,
-    this.name,
-    this.paid,
-    this.platform,
-    @JsonKey(name: 'start_time') this.startTime,
-    this.url,
-  });
+  const _$BountyModelImpl(
+      {this.amount,
+      @JsonKey(name: 'created_at') this.createdAt,
+      this.description,
+      this.duration,
+      @JsonKey(name: 'end_time') this.endTime,
+      this.id,
+      this.name,
+      this.paid,
+      this.platform,
+      @JsonKey(name: 'start_time') this.startTime,
+      this.url});
 
   factory _$BountyModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$BountyModelImplFromJson(json);
@@ -346,20 +312,8 @@ class _$BountyModelImpl implements _BountyModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    amount,
-    createdAt,
-    description,
-    duration,
-    endTime,
-    id,
-    name,
-    paid,
-    platform,
-    startTime,
-    url,
-  );
+  int get hashCode => Object.hash(runtimeType, amount, createdAt, description,
+      duration, endTime, id, name, paid, platform, startTime, url);
 
   /// Create a copy of BountyModel
   /// with the given fields replaced by the non-null parameter values.
@@ -371,24 +325,25 @@ class _$BountyModelImpl implements _BountyModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BountyModelImplToJson(this);
+    return _$$BountyModelImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _BountyModel implements BountyModel {
-  const factory _BountyModel({
-    final int? amount,
-    @JsonKey(name: 'created_at') final String? createdAt,
-    final String? description,
-    final int? duration,
-    @JsonKey(name: 'end_time') final int? endTime,
-    final int? id,
-    final String? name,
-    final bool? paid,
-    final String? platform,
-    @JsonKey(name: 'start_time') final int? startTime,
-    final String? url,
-  }) = _$BountyModelImpl;
+  const factory _BountyModel(
+      {final int? amount,
+      @JsonKey(name: 'created_at') final String? createdAt,
+      final String? description,
+      final int? duration,
+      @JsonKey(name: 'end_time') final int? endTime,
+      final int? id,
+      final String? name,
+      final bool? paid,
+      final String? platform,
+      @JsonKey(name: 'start_time') final int? startTime,
+      final String? url}) = _$BountyModelImpl;
 
   factory _BountyModel.fromJson(Map<String, dynamic> json) =
       _$BountyModelImpl.fromJson;
