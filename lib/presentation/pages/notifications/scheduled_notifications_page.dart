@@ -1,7 +1,11 @@
+// scheduled_notifications_page.dart
 import 'package:flutter/material.dart';
-
 import '../../../infrastructure/models/scheduled_notification.dart';
 import '../../../infrastructure/services/notifications/notification_services.dart';
+import 'dart:math';
+
+import '../../values/constants.dart';
+import 'components/notification_card.dart';
 
 class ScheduledNotificationsPage extends StatefulWidget {
   const ScheduledNotificationsPage({super.key});
@@ -13,90 +17,73 @@ class ScheduledNotificationsPage extends StatefulWidget {
 
 class _ScheduledNotificationsPageState
     extends State<ScheduledNotificationsPage> {
-  late List<ScheduledNotification> notifications;
+  late List<ScheduledNotification> _notifications;
 
   @override
   void initState() {
     super.initState();
-    notifications = NotificationService.getAllScheduledNotifications();
+    _loadNotifications();
   }
 
-  void _refreshList() {
-    setState(() {
-      notifications = NotificationService.getAllScheduledNotifications();
-    });
+  Future<void> _loadNotifications() async {
+    final list = NotificationService.getAllScheduledNotifications();
+    list.removeWhere((n) => n.time.isBefore(DateTime.now()));
+    setState(() => _notifications = list);
   }
 
   Future<void> _deleteNotification(int id) async {
     await NotificationService.cancelNotification(id);
-    _refreshList();
+    await _loadNotifications();
+  }
+
+  Future<void> _scheduleQuickNotification() async {
+    final scheduled = DateTime.now().add(const Duration(seconds: 5));
+    await NotificationService.scheduleCustomNotification(
+      id: Random().nextInt(1000000),
+      title: 'Immediate Test',
+      body: 'Should appear in 5 seconds',
+      scheduledTime: scheduled,
+    );
+    await _loadNotifications();
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Notification scheduled in 5 seconds")),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Scheduled Notifications')),
+      backgroundColor: kBackgroundColor,
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: kAppbarTitleTextColor, // Set the icon color
+        ),
+        surfaceTintColor: kBackgroundColor,
+        title: const Text('My Reminders', style: kAppbarTitleStyle),
+        centerTitle: true,
+        backgroundColor: kBackgroundColor, // Match the background color
+        elevation: 0,
+      ),
       body:
-          notifications.isEmpty
-              ? const Center(child: Text("No scheduled notifications"))
+          _notifications.isEmpty
+              ? const Center(
+                child: Text("No scheduled notifications", style: kH1textStyle),
+              )
               : ListView.builder(
-                itemCount: notifications.length,
+                itemCount: _notifications.length,
                 itemBuilder: (_, index) {
-                  final n = notifications[index];
-                  return Card(
-                    child: ListTile(
-                      title: Text(n.title),
-                      subtitle: Text(
-                        '${n.body}\nScheduled at: ${n.time.toLocal()}',
-                        style: const TextStyle(fontSize: 12),
-                      ),
-                      trailing: IconButton(
-                        icon: const Icon(Icons.cancel, color: Colors.red),
-                        onPressed: () => _deleteNotification(n.id),
-                      ),
-                    ),
+                  final n = _notifications[index];
+                  return NotificationCard(
+                    notification: n,
+                    onDelete: () => _deleteNotification(n.id),
                   );
                 },
               ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () async {
-          final now = DateTime.now();
-          //final scheduled = now.add(const Duration(minutes: 1));
-
-          //final id = DateTime.now().millisecondsSinceEpoch ~/ 1000;
-
-          await NotificationService.requestExactAlarmPermission();
-          // await NotificationService.scheduleCustomNotification(
-          //   // id: id,
-          //   title: 'Demo Alert',
-          //   body: 'This notification was scheduled 1 minute ago.',
-          //   scheduledTime: scheduled,
-          // );
-
-          // print(
-          //   'Scheduling notification at $scheduled (now: ${DateTime.now()})',
-          // );
-          // await NotificationService.scheduleCustomNotification(
-          //   title: 'Demo Alert',
-          //   body: 'This notification was scheduled 30 seconds ago.',
-          //   scheduledTime: scheduled,
-          // );
-          final scheduled = DateTime.now().add(Duration(seconds: 5));
-          await NotificationService.scheduleCustomNotification(
-            title: 'Immediate Test',
-            body: 'Should appear in 5 seconds',
-            scheduledTime: scheduled,
-          );
-
-          _refreshList();
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Notification scheduled in 1 min")),
-          );
-          print('Scheduled!');
-
-          // await NotificationService.showTestNotification();
-        },
+        isExtended: true,
+        child: Icon(Icons.notifications),
+        onPressed: _scheduleQuickNotification,
       ),
     );
   }

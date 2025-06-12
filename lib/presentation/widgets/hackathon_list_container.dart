@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:klaxon/infrastructure/models/hackathon_model.dart';
+import '../../infrastructure/services/notifications/schedule_contest_reminders.dart';
 import '../values/constants.dart';
 
 class HackathonListContainer extends StatelessWidget {
@@ -114,13 +115,24 @@ class HackathonListContainer extends StatelessWidget {
           Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: onShareTap,
+              onTap: () async {
+                if (isUpcoming) {
+                  await scheduleContestReminders(
+                    startTimeEpoch: hackathonModel.startTime!,
+                    contestName: hackathonModel.name ?? 'Hackathon Contest',
+                  );
+                }
+              },
               borderRadius: BorderRadius.circular(20),
               splashColor: kListContainerSplashColor,
               highlightColor: kListContainerHighlightColor,
-              child:  Padding(
+              child: Padding(
                 padding: EdgeInsets.all(12),
-                child: Icon( isUpcoming ? Icons.notification_add : Icons.share, color: Colors.white70, size: 20),
+                child: Icon(
+                  isUpcoming ? Icons.notification_add : Icons.share,
+                  color: Colors.white70,
+                  size: 20,
+                ),
               ),
             ),
           ),

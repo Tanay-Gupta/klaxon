@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../infrastructure/models/contest_model.dart';
+import '../../infrastructure/services/notifications/schedule_contest_reminders.dart';
 import '../values/constants.dart';
 
 class ContestListContainer extends StatelessWidget {
@@ -115,7 +116,14 @@ class ContestListContainer extends StatelessWidget {
           Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: onShareTap,
+              onTap: () async {
+                if (isUpcoming) {
+                  await scheduleContestReminders(
+                    startTimeEpoch: contestModel.startTime!,
+                    contestName: contestModel.name ?? 'Coding Contest',
+                  );
+                }
+              },
               borderRadius: BorderRadius.circular(20),
               splashColor: kListContainerSplashColor,
               highlightColor: kListContainerHighlightColor,
