@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:klaxon/infrastructure/models/hackathon_model.dart';
 import '../../infrastructure/services/notifications/schedule_contest_reminders.dart';
+import '../../infrastructure/services/share/event_share.dart';
 import '../values/constants.dart';
 import '../values/values.dart';
 
@@ -134,6 +135,9 @@ class HackathonListContainer extends StatelessWidget {
                       context,
                     ).showSnackBar(SnackBar(content: Text(message)));
                   }
+                }
+                else {
+                  shareHackathon(hackathonModel);
                 }
               },
               borderRadius: BorderRadius.circular(20),

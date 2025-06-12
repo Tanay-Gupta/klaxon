@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 
 import '../../infrastructure/models/contest_model.dart';
 import '../../infrastructure/services/notifications/schedule_contest_reminders.dart';
+import '../../infrastructure/services/share/event_share.dart';
 import '../values/constants.dart';
 import '../values/values.dart';
 
@@ -16,6 +17,7 @@ class ContestListContainer extends StatelessWidget {
   final bool isUpcoming;
   final VoidCallback? onShareTap;
   final VoidCallback? onContainerTap;
+  final int maxLines;
 
   const ContestListContainer({
     super.key,
@@ -24,6 +26,7 @@ class ContestListContainer extends StatelessWidget {
     this.isUpcoming = false,
     this.onShareTap,
     this.onContainerTap,
+    this.maxLines = 3,
   });
 
   String _formatFullDateTime(String utc) {
@@ -88,7 +91,7 @@ class ContestListContainer extends StatelessWidget {
                           children: [
                             Text(
                               contestModel.name ?? 'No Title',
-                              maxLines: 3,
+                              maxLines: maxLines,
                               overflow: TextOverflow.ellipsis,
                               style: kSubtitleTextSyle.copyWith(
                                 fontWeight: FontWeight.w600,
@@ -135,6 +138,8 @@ class ContestListContainer extends StatelessWidget {
                       context,
                     ).showSnackBar(SnackBar(content: Text(message)));
                   }
+                } else {
+                  shareContest(contestModel);
                 }
               },
               borderRadius: BorderRadius.circular(20),

@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:klaxon/infrastructure/models/bounty_model.dart';
+import '../../infrastructure/services/share/event_share.dart';
 import '../values/constants.dart';
 
 class BountyListContainer extends StatelessWidget {
@@ -114,7 +115,10 @@ class BountyListContainer extends StatelessWidget {
           Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: onShareTap,
+              onTap: (){
+
+                shareBounty(bountyModel);
+              },
               borderRadius: BorderRadius.circular(20),
               splashColor: kListContainerSplashColor,
               highlightColor: kListContainerHighlightColor,

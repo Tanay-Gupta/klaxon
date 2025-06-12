@@ -94,12 +94,7 @@ class _TabBarContentState extends State<TabBarContent> {
             isUpcoming: DateTime.fromMillisecondsSinceEpoch(
               contest.startTime! * 1000,
             ).isAfter(DateTime.now()),
-            onContainerTap: () {
-              print('Tapped on contest: ${contest.name}');
-            },
-            onShareTap: () {
-              print('Share tapped for contest: ${contest.name}');
-            },
+            
           );
         },
       ),
