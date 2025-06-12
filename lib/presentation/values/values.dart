@@ -7,6 +7,7 @@ const livePulseAnimation = 'assets/animations/livePulse.json';
 //---------------------------------------App Bar Titles---------------------------------------//
 const String homeTitle = 'Contest Hunt';
 const String contestTitle = 'Contests';
+const String notificationsTitle = 'Notifications';
 const String hackathonsTitle = 'Hackathons';
 const String bountyTitle = 'Bounty';
 const String settingsTitle = 'Settings';
@@ -33,6 +34,7 @@ const String apiErrorMessage =
 //---------------------------------------Page Images---------------------------------------//
 
 const String bountyImage = 'assets/icons/bounty_screen/bug-fixing.svg';
+const String noNotificationIllistration='assets/icons/no_notification.svg';
 
 // const contest_platforms = [
 //   'atcoder',
