@@ -158,7 +158,7 @@ class NotificationService {
   }
 
   /// Schedules a custom local notification for a future time.
-  static Future<void> scheduleCustomNotification({
+  static Future<bool> scheduleCustomNotification({
     required String title,
     required String body,
     required DateTime scheduledTime,
@@ -171,7 +171,7 @@ class NotificationService {
       debugPrint(
         "Scheduled time $scheduledTime is in the past. Notification not scheduled.",
       );
-      return;
+      return false;
     }
 
     
@@ -202,6 +202,7 @@ class NotificationService {
     );
     await _box.put(id, notification);
     debugPrint("Notification scheduled for $scheduledTime with ID: $id");
+    return true;
   }
 
   /// Cancels a previously scheduled notification.

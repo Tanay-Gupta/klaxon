@@ -5,28 +5,30 @@ import 'package:crypto/crypto.dart';
 
 import 'notification_services.dart';
 
-int generateContestId(String name, int startTime) {
+int generateSafeContestId(String name, int startTime) {
   final input = '$name-$startTime';
   final bytes = utf8.encode(input);
   final digest = md5.convert(bytes);
-  // Converting part of MD5 hash to int (4 bytes)
-  return digest.bytes.sublist(0, 4).fold(0, (a, b) => a * 256 + b);
+  // Only use last 3 bytes for compactness (24-bit = max 16,777,215)
+  final int hash =
+      (digest.bytes[13] << 16) | (digest.bytes[14] << 8) | (digest.bytes[15]);
+  return hash;
 }
 
-Future<void> scheduleContestReminders({
+Future<bool> scheduleContestReminders({
   required String contestName,
   required int startTimeEpoch,
 }) async {
   final contestStart =
       DateTime.fromMillisecondsSinceEpoch(startTimeEpoch * 1000).toLocal();
-  final contestId = generateContestId(contestName, startTimeEpoch);
+  final contestId = generateSafeContestId(contestName, startTimeEpoch);
 
   final List<_ReminderConfig> reminders = [
     _ReminderConfig(
       minutesBefore: 1440,
       idSuffix: 1,
       title: '⚔️ $contestName is Coming!',
-      body: 'You’ve got 24 hours to prepare your brain 🧠 and snacks 🍫',
+      body: 'You\'ve got 24 hours to prepare your brain 🧠 and snacks 🍫',
     ),
     _ReminderConfig(
       minutesBefore: 60,
@@ -45,23 +47,28 @@ Future<void> scheduleContestReminders({
       idSuffix: 4,
       title: '🚨 $contestName in 5 mins!',
       body:
-          'Grab water 💧, sit straight 🪑, and breathe — it’s almost go-time!',
+          'Grab water 💧, sit straight 🪑, and breathe — it\'s almost go-time!',
     ),
   ];
+
+  bool scheduledAny = false;
 
   for (final reminder in reminders) {
     final scheduledTime = contestStart.subtract(
       Duration(minutes: reminder.minutesBefore),
     );
-    if (scheduledTime.isAfter(DateTime.now())) {
-      await NotificationService.scheduleCustomNotification(
-        id: contestId * 10 + reminder.idSuffix,
-        title: reminder.title,
-        body: reminder.body,
-        scheduledTime: scheduledTime,
-      );
-    }
+
+    final success = await NotificationService.scheduleCustomNotification(
+      id: contestId * 10 + reminder.idSuffix,
+      title: reminder.title,
+      body: reminder.body,
+      scheduledTime: scheduledTime,
+    );
+
+    if (success) scheduledAny = true;
   }
+
+  return scheduledAny;
 }
 
 class _ReminderConfig {

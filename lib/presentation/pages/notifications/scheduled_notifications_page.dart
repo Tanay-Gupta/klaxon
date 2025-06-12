@@ -38,16 +38,24 @@ class _ScheduledNotificationsPageState
 
   Future<void> _scheduleQuickNotification() async {
     final scheduled = DateTime.now().add(const Duration(seconds: 5));
+
     await NotificationService.scheduleCustomNotification(
       id: Random().nextInt(1000000),
-      title: 'Immediate Test',
-      body: 'Should appear in 5 seconds',
+      title: '⚡ Surprise Incoming!',
+      body: 'Boom! A wild notification appears in 5 seconds 👀',
       scheduledTime: scheduled,
     );
+
     await _loadNotifications();
+
     if (!mounted) return;
+
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("Notification scheduled in 5 seconds")),
+      const SnackBar(
+        content: Text(
+          "🎯 Heads up! A notification is sneaking up in 5 seconds...",
+        ),
+      ),
     );
   }
 
@@ -70,15 +78,18 @@ class _ScheduledNotificationsPageState
               ? const Center(
                 child: Text("No scheduled notifications", style: kH1textStyle),
               )
-              : ListView.builder(
-                itemCount: _notifications.length,
-                itemBuilder: (_, index) {
-                  final n = _notifications[index];
-                  return NotificationCard(
-                    notification: n,
-                    onDelete: () => _deleteNotification(n.id),
-                  );
-                },
+              : Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: ListView.builder(
+                  itemCount: _notifications.length,
+                  itemBuilder: (_, index) {
+                    final n = _notifications[index];
+                    return NotificationCard(
+                      notification: n,
+                      onDelete: () => _deleteNotification(n.id),
+                    );
+                  },
+                ),
               ),
       floatingActionButton: FloatingActionButton(
         isExtended: true,

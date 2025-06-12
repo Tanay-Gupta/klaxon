@@ -33,6 +33,10 @@ class BountyDetailBody extends StatelessWidget {
     final startTime = formatTimestamp(contest.startTime ?? 0);
     final endTime = formatTimestamp(contest.endTime ?? 0);
     final duration = formatDuration(contest.duration ?? 0);
+    final bountyAmount=contest.amount;
+    final isUpcoming = DateTime.fromMillisecondsSinceEpoch(
+      contest.startTime! * 1000,
+    ).isAfter(DateTime.now());
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
@@ -42,7 +46,10 @@ class BountyDetailBody extends StatelessWidget {
           // 🎯 Contest Name
           Text(contest.name ?? "", style: kH1textStyle),
           const SizedBox(height: 8),
-          Text("Hosted by ${platformDisplayNames[contest.platform]}", style: kH1SubHeadingtextStyle),
+          Text(
+            "Hosted by ${platformDisplayNames[contest.platform]}",
+            style: kH1SubHeadingtextStyle,
+          ),
           const SizedBox(height: 10),
           Divider(color: kNavUnselectedIconColor, thickness: 1),
 
@@ -71,45 +78,40 @@ class BountyDetailBody extends StatelessWidget {
             duration,
             style: kH1SubHeadingtextStyle.copyWith(color: Colors.white),
           ),
+          const SizedBox(height: 16),
           // ⏱ Mode
           Text("Bounty amount", style: kH1SubHeadingtextStyle),
           const SizedBox(height: 5),
           Text(
-            "$contest.amount.toString()\$",
+            "$bountyAmount \$",
             style: kH1SubHeadingtextStyle.copyWith(color: Colors.white),
           ),
           Divider(color: kNavUnselectedIconColor, thickness: 1),
           const SizedBox(height: 16),
 
           // 🔔 Reminder Section
-          Text('Reminder', style: kHeadingextStyle),
-          const SizedBox(height: 16),
-          const EventReminderRow(),
-          const SizedBox(height: 16),
-          EventActionButton(
-            label: "Activate Reminder",
-            onPressed: () {
-              // TODO: Implement reminder activation logic
-            },
-          ),
-          const SizedBox(height: 16),
-          Divider(color: kNavUnselectedIconColor, thickness: 1),
-          const SizedBox(height: 16),
+          if (isUpcoming) Text('Reminder', style: kHeadingextStyle),
+          if (isUpcoming) const SizedBox(height: 16),
+          if (isUpcoming) const EventReminderRow(),
+          if (isUpcoming) const SizedBox(height: 16),
+          if (isUpcoming)
+            EventActionButton(label: "Activate Reminder", onPressed: () {}),
+          if (isUpcoming) const SizedBox(height: 16),
+          if (isUpcoming) Divider(color: kNavUnselectedIconColor, thickness: 1),
+         if (isUpcoming) const SizedBox(height: 16),
 
           // 📄 Event Details Section
           Text('Event Description', style: kHeadingextStyle),
           const SizedBox(height: 8),
           Html(
-            data: contest.description!=null && contest.description!.isNotEmpty ? contest.description:  " No description available",
+            data:
+                contest.description != null && contest.description!.isNotEmpty
+                    ? contest.description
+                    : " No description available",
             style: {"body": Style(color: Colors.white)},
           ),
           const SizedBox(height: 16),
-          EventActionButton(
-            label: "Open Site",
-            onPressed: () {
-              
-            },
-          ),
+          EventActionButton(label: "Open Site", onPressed: () {}),
           const SizedBox(height: 16),
         ],
       ),

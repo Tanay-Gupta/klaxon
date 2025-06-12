@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -6,6 +8,7 @@ import 'package:intl/intl.dart';
 import '../../infrastructure/models/contest_model.dart';
 import '../../infrastructure/services/notifications/schedule_contest_reminders.dart';
 import '../values/constants.dart';
+import '../values/values.dart';
 
 class ContestListContainer extends StatelessWidget {
   final ContestModel contestModel;
@@ -118,10 +121,20 @@ class ContestListContainer extends StatelessWidget {
             child: InkWell(
               onTap: () async {
                 if (isUpcoming) {
-                  await scheduleContestReminders(
+                  final success = await scheduleContestReminders(
                     startTimeEpoch: contestModel.startTime!,
                     contestName: contestModel.name ?? 'Coding Contest',
                   );
+                  if (success && context.mounted) {
+                    final message =
+                        kFunnyNotificationMessages[Random().nextInt(
+                          kFunnyNotificationMessages.length,
+                        )];
+
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text(message)));
+                  }
                 }
               },
               borderRadius: BorderRadius.circular(20),

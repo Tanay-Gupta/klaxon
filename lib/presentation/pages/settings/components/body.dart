@@ -96,13 +96,16 @@ class _SettingsBodyState extends State<SettingsBody> {
           // Text('Reminders', style: kHeadingextStyle),
           const SizedBox(height: 20),
 
-          SettingTile(
-            title: 'Manage Reminders',
-            subtitle: 'All your reminders in one place',
-            trailing: Padding(
-              padding: const EdgeInsets.only(left: 12.0),
-              child: SvgPicture.asset(
-                "assets/icons/settings_page/arrow_right.svg",
+          InkWell(
+            onTap: () => context.push('/scheduledNotifications'),
+            child: SettingTile(
+              title: 'Manage Reminders',
+              subtitle: 'All your reminders in one place',
+              trailing: Padding(
+                padding: const EdgeInsets.only(left: 12.0),
+                child: SvgPicture.asset(
+                  "assets/icons/settings_page/arrow_right.svg",
+                ),
               ),
             ),
           ),
@@ -118,7 +121,7 @@ class _SettingsBodyState extends State<SettingsBody> {
               //   MaterialPageRoute(builder: (context) => const AboutPage()),
               // );
 
-              context.push('/scheduledNotifications');
+              context.push('/about');
             },
             child: SettingTile(
               title: 'About',

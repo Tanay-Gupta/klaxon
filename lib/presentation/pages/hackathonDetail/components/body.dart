@@ -32,6 +32,9 @@ class HackathonDetailBody extends StatelessWidget {
     final startTime = formatTimestamp(contest.startTime ?? 0);
     final endTime = formatTimestamp(contest.endTime ?? 0);
     final duration = formatDuration(contest.duration ?? 0);
+     final isUpcoming = DateTime.fromMillisecondsSinceEpoch(
+      contest.startTime! * 1000,
+    ).isAfter(DateTime.now());
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
@@ -82,19 +85,19 @@ class HackathonDetailBody extends StatelessWidget {
           const SizedBox(height: 16),
 
           // 🔔 Reminder Section
-          Text('Reminder', style: kHeadingextStyle),
-          const SizedBox(height: 16),
-          const EventReminderRow(),
-          const SizedBox(height: 16),
-          EventActionButton(
+         if (isUpcoming) Text('Reminder', style: kHeadingextStyle),
+         if (isUpcoming) const SizedBox(height: 16),
+         if (isUpcoming) const EventReminderRow(),
+         if (isUpcoming) const SizedBox(height: 16),
+         if (isUpcoming) EventActionButton(
             label: "Activate Reminder",
             onPressed: () {
               // TODO: Implement reminder activation logic
             },
           ),
-          const SizedBox(height: 16),
-          Divider(color: kNavUnselectedIconColor, thickness: 1),
-          const SizedBox(height: 16),
+         if (isUpcoming) const SizedBox(height: 16),
+         if (isUpcoming) Divider(color: kNavUnselectedIconColor, thickness: 1),
+         if (isUpcoming) const SizedBox(height: 16),
 
           // 📄 Event Details Section
           Text('Event Description', style: kHeadingextStyle),
