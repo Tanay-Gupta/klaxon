@@ -4,6 +4,7 @@ import '../../../../infrastructure/models/contest_model.dart';
 import '../../../../infrastructure/models/hackathon_model.dart';
 import '../../../../infrastructure/models/platform_model.dart';
 import '../../../../infrastructure/services/api/api_service.dart';
+import '../../../values/constants.dart';
 import '../../../values/platform_master.dart';
 import '../../../values/values.dart';
 import '../../../widgets/bounty_list_container.dart';
@@ -76,7 +77,7 @@ class _TabBarContentState extends State<TabBarContent> {
               children: const [
                 SizedBox(
                   height: 300,
-                  child: Center(child: Text(noContestsFound)),
+                  child: Center(child: Text(noContestsFound, style: kH1textStyle)),
                 ),
               ],
             ),
@@ -110,7 +111,19 @@ class _TabBarContentState extends State<TabBarContent> {
   Widget _buildContestList(List<dynamic> contests, PlatformType platformType) {
     return RefreshIndicator(
       onRefresh: _refreshData,
-      child: ListView.builder(
+      child: contests.isEmpty
+                  ? ListView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    children: const [
+                      Center(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 100),
+                          child: Text(noDataFound, style: kH1textStyle),
+                        ),
+                      ),
+                    ],
+                  )
+                  : ListView.builder(
         physics: const BouncingScrollPhysics(),
         itemCount: contests.length,
         itemBuilder: (context, index) {

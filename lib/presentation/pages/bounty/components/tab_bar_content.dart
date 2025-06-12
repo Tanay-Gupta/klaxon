@@ -52,6 +52,7 @@
 import 'package:flutter/material.dart';
 import '../../../../infrastructure/models/bounty_model.dart';
 import '../../../../infrastructure/services/api/api_service.dart';
+import '../../../values/constants.dart';
 import '../../../values/platform_master.dart';
 import '../../../values/values.dart';
 import '../../../widgets/bounty_list_container.dart';
@@ -107,7 +108,7 @@ class _TabBarContentState extends State<TabBarContent> {
                 Center(
                   child: Padding(
                     padding: EdgeInsets.only(top: 100),
-                    child: Text(apiErrorMessage),
+                    child: Text(apiErrorMessage,style: kH1textStyle),
                   ),
                 ),
               ],
@@ -133,7 +134,7 @@ class _TabBarContentState extends State<TabBarContent> {
                       Center(
                         child: Padding(
                           padding: EdgeInsets.only(top: 100),
-                          child: Text(noBountiesFound),
+                          child: Text(noBountiesFound, style: kH1textStyle),
                         ),
                       ),
                     ],

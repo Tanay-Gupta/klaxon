@@ -21,6 +21,9 @@ const String settingsTagline = 'Settings';
 const String noContestsFound = 'No contests found';
 const String noHackathonsFound = 'No hackathons found';
 const String noBountiesFound = 'No bounties found';
+const String noDataFound = 'No data found';
+const String noUpcomingContests = 'No upcoming contests';
+const String noOngoingContests = 'No ongoing contests';
 
 //---------------------------------------API Errors---------------------------------------//
 const String apiError = 'API Error';

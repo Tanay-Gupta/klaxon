@@ -118,9 +118,9 @@ class HackathonListContainer extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               splashColor: kListContainerSplashColor,
               highlightColor: kListContainerHighlightColor,
-              child: const Padding(
+              child:  Padding(
                 padding: EdgeInsets.all(12),
-                child: Icon(Icons.share, color: Colors.white70, size: 20),
+                child: Icon( isUpcoming ? Icons.notification_add : Icons.share, color: Colors.white70, size: 20),
               ),
             ),
           ),
