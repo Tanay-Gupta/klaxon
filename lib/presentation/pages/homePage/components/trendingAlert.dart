@@ -22,7 +22,7 @@ Widget trendingAlertCarouselSlider(BuildContext context) {
         autoPlayCurve: Curves.fastOutSlowIn,
         scrollDirection: Axis.horizontal,
       ),
-      itemCount: 5, // You can make this dynamic
+      itemCount: 9, // You can make this dynamic
       itemBuilder: (BuildContext context, int itemIndex, int _) {
         return GestureDetector(
           onTap: () {
@@ -49,7 +49,7 @@ Widget trendingAlertCarouselSlider(BuildContext context) {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
               child: Image.asset(
-                'assets/testImages/${itemIndex + 1}.jpg', // Use dynamic index
+                'assets/testImages/${itemIndex + 1}.png', // Use dynamic index
                 fit: BoxFit.cover,
                 width: double.infinity,
                 height: carouselHeight - 20,

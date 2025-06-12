@@ -8,7 +8,11 @@ import 'tab_bar_content.dart';
 class PlatformDetailBody extends StatelessWidget {
   final String platformName;
   final PlatformType platformType;
-  const PlatformDetailBody({super.key, required this.platformName, required this.platformType});
+  const PlatformDetailBody({
+    super.key,
+    required this.platformName,
+    required this.platformType,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +63,14 @@ class PlatformDetailBody extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: Center(
-                      child: Text("Some Banner", style: kSubtitleTextSyle),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20.0),
+                      child: Image.asset(
+                        'assets/testImages/banner.png', // Use dynamic index
+                        fit: BoxFit.fitWidth,
+                        width: double.infinity,
+                        height: bannerHeight - 20,
+                      ),
                     ),
                   ),
                 ),
@@ -77,7 +87,10 @@ class PlatformDetailBody extends StatelessWidget {
             ],
         body: Padding(
           padding: const EdgeInsets.only(left: 16, right: 16, top: 15),
-          child: TabBarContent(platformName: platformName, platformType: platformType,),
+          child: TabBarContent(
+            platformName: platformName,
+            platformType: platformType,
+          ),
         ),
       ),
     );
