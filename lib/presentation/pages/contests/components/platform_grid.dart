@@ -19,7 +19,7 @@ class PlatformGrid extends StatelessWidget {
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
       padding: const EdgeInsets.all(11),
       child: GridView.count(
-        crossAxisCount: 4,
+       crossAxisCount: 4,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
         physics: const NeverScrollableScrollPhysics(),

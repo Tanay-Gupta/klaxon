@@ -80,13 +80,13 @@ const List<PlatformModel> allPlatforms = [
     url: 'https://csacademy.com/',
     type: PlatformType.contest,
   ),
-  PlatformModel(
-    key: 'requestplatform',
-    displayName: 'RequestUs',
-    logoPath: 'assets/icons/coding_platforms/requestplatform.svg',
-    url: 'https://requestplatform.com/',
-    type: PlatformType.contest,
-  ),
+  // PlatformModel(
+  //   key: 'requestplatform',
+  //   displayName: 'RequestUs',
+  //   logoPath: 'assets/icons/coding_platforms/requestplatform.svg',
+  //   url: 'https://requestplatform.com/',
+  //   type: PlatformType.contest,
+  // ),
 
   // Hackathon Platforms
   PlatformModel(
@@ -110,13 +110,13 @@ const List<PlatformModel> allPlatforms = [
     url: 'https://devpost.com/',
     type: PlatformType.hackathon,
   ),
-  PlatformModel(
-    key: 'requestplatform',
-    displayName: 'RequestUs',
-    logoPath: 'assets/icons/coding_platforms/requestplatform.svg',
-    url: 'https://requestplatform.com/',
-    type: PlatformType.hackathon,
-  ),
+  // PlatformModel(
+  //   key: 'requestplatform',
+  //   displayName: 'RequestUs',
+  //   logoPath: 'assets/icons/coding_platforms/requestplatform.svg',
+  //   url: 'https://requestplatform.com/',
+  //   type: PlatformType.hackathon,
+  // ),
 
   // Bounty Platforms
   PlatformModel(

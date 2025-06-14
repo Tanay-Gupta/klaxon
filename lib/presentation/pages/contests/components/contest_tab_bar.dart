@@ -31,8 +31,9 @@ class ContestTabBar extends StatelessWidget {
         ),
         radius: 12,
         tabs: [
-          Tab(text: 'Live', icon: Lottie.asset(livePulseAnimation, height: 15)),
           const Tab(text: 'Upcoming'),
+          Tab(text: 'Live', icon: Lottie.asset(livePulseAnimation, height: 15)),
+          
         ],
       ),
     );

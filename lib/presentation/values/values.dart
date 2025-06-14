@@ -2,6 +2,9 @@
 
 const String appName = "Contest Hunt"; // change this to your app name
 const String baseAPI = "https://contesthunt-api.onrender.com/";
+const String privacyPolicyUrl="https://miraidyo.github.io/contesthunt-legal/privacy-policy.html";
+const String termAndConditionUrl="https://miraidyo.github.io/contesthunt-legal/terms-and-conditions.html";
+
 const livePulseAnimation = 'assets/animations/livePulse.json';
 
 //---------------------------------------App Bar Titles---------------------------------------//

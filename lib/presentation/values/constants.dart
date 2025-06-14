@@ -32,6 +32,7 @@ const kSegmentedTabBGColor = Color(0xff110919);
 const kSegmentedTabSelectedColor = Color(0xff2C114A);
 
 const kBackgroundColor = Color(0xFF030303);
+// const kBackgroundColor = Color(0xFF212121);
 
 //----------------------------------------------------------Styles----------------------------------------------------------
 const kHomePageBGGradientDecoration = BoxDecoration(

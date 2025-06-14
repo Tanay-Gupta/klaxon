@@ -34,8 +34,9 @@ class _TabBarContentState extends State<TabBarContent> {
     return TabBarView(
       physics: const BouncingScrollPhysics(),
       children: [
+         _buildHackathonList(isUpcoming: true),
         _buildHackathonList(isUpcoming: false),
-        _buildHackathonList(isUpcoming: true),
+       
       ],
     );
   }
