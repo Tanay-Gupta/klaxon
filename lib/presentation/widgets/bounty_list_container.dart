@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import 'package:klaxon/infrastructure/models/bounty_model.dart';
+
+import '../../infrastructure/models/bounty_model.dart';
 import '../../infrastructure/services/share/event_share.dart';
 import '../values/constants.dart';
+import '../values/values.dart';
 
 class BountyListContainer extends StatelessWidget {
   final BountyModel bountyModel;
@@ -47,37 +49,46 @@ class BountyListContainer extends StatelessWidget {
     );
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
-        color: kListContainerBGColor,
-        borderRadius: BorderRadius.circular(12),
+        color: const Color(0xFF141414),
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0x4D000000),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
+          BoxShadow(
+            color: kButtonColor.withAlpha(25),
+            blurRadius: 4,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Row(
         children: [
-          // Left tapable section
+          // Left Tapable Content
           Expanded(
             child: Material(
               color: Colors.transparent,
               child: InkWell(
-                onTap: () {
-                  context.push(
-                    '/bountydetail',
-                    extra: bountyModel, // pass the actual model here
-                  );
-                },
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(16),
                 splashColor: kListContainerSplashColor,
                 highlightColor: kListContainerHighlightColor,
+                onTap: () {
+                  context.push('/bountydetail', extra: bountyModel);
+                },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                    vertical: 12,
-                    horizontal: 12,
+                    vertical: 14,
+                    horizontal: 16,
                   ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SvgPicture.asset(imgPath, height: 36, width: 36),
-                      const SizedBox(width: 12),
+                      SvgPicture.asset(imgPath, height: 40, width: 40),
+                      const SizedBox(width: 14),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,21 +97,22 @@ class BountyListContainer extends StatelessWidget {
                               bountyModel.name ?? 'No Title',
                               maxLines: 3,
                               overflow: TextOverflow.ellipsis,
-                              style: kSubtitleTextSyle.copyWith(
+                              style: kHeadingextStyle.copyWith(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 15,
+                                color: Colors.white,
                               ),
                             ),
-                            const SizedBox(height: 4),
-                            isUpcoming == false
-                                ? Text(
-                                  'ends at: $endFormatted',
-                                  style: kListContainerTextStyle,
-                                )
-                                : Text(
-                                  'starts at: $startFormatted',
-                                  style: kListContainerTextStyle,
-                                ),
+                            const SizedBox(height: 6),
+                            Text(
+                              isUpcoming
+                                  ? 'Starts: $startFormatted'
+                                  : 'Ends: $endFormatted',
+                              style: kSubheadingtextStyle.copyWith(
+                                color: Colors.grey[400],
+                                fontSize: 13,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -111,23 +123,29 @@ class BountyListContainer extends StatelessWidget {
             ),
           ),
 
-          // Right share button
+          // Right Share Button
           Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: (){
-
-                shareBounty(bountyModel);
-              },
               borderRadius: BorderRadius.circular(20),
               splashColor: kListContainerSplashColor,
               highlightColor: kListContainerHighlightColor,
-              child: const Padding(
-                padding: EdgeInsets.all(12),
-                child: Icon(Icons.share, color: Colors.white70, size: 20),
+              onTap: () => shareBounty(bountyModel),
+              child: Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: kButtonColor.withAlpha(40),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.share,
+                  color: kButtonColor,
+                  size: 20,
+                ),
               ),
             ),
           ),
+          const SizedBox(width: 10),
         ],
       ),
     );
