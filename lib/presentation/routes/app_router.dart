@@ -19,6 +19,7 @@ import '../pages/bountyDetail/bounty_detail_page.dart';
 import '../pages/bountyDetail/components/body.dart';
 import '../pages/contestDetail/contest_detail_page.dart';
 import '../pages/hackathonDetail/hackathon_detail_page.dart';
+import '../pages/notifications/NotificationCenterScreen.dart';
 import '../pages/notifications/scheduled_notifications_page.dart';
 import '../pages/settings/components/about_page.dart';
 
@@ -186,7 +187,7 @@ final GoRouter router = GoRouter(
       path: '/notifications',
       pageBuilder: (context, state) => buildCustomTransitionPage(
         key: state.pageKey,
-        child: const EmptyNotificationsScreen(),
+        child: const NotificationCenterScreen(),
       ),
     ),
     GoRoute(

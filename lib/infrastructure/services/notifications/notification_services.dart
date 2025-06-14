@@ -6,6 +6,7 @@ import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:hive/hive.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import '../../models/received_notification.dart';
 import '../../models/scheduled_notification.dart'; // Assuming this path is correct
 
 // A top-level function to handle notification taps
@@ -31,6 +32,8 @@ class NotificationService {
       FlutterLocalNotificationsPlugin();
   static final Box<ScheduledNotification> _box =
       Hive.box<ScheduledNotification>('scheduled_notifications');
+  static final Box<ReceivedNotification> _receivedBox =
+      Hive.box<ReceivedNotification>('received_notifications');
 
   /// Initializes notification services, including permissions, timezones, and listeners.
   static Future<void> initialize() async {
@@ -115,24 +118,52 @@ class NotificationService {
   }
 
   /// Displays a notification received from Firebase.
-  static Future<void> _showFirebaseNotification(RemoteMessage message) async {
-    // Use a specific channel for FCM messages
-    const androidDetails = AndroidNotificationDetails(
-      'fcm_channel',
-      'Cloud Messaging',
-      channelDescription: 'Notifications from Firebase Cloud Messaging',
-      importance: Importance.max,
-      priority: Priority.high,
-    );
+  // static Future<void> _showFirebaseNotification(RemoteMessage message) async {
+  //   // Use a specific channel for FCM messages
+  //   const androidDetails = AndroidNotificationDetails(
+  //     'fcm_channel',
+  //     'Cloud Messaging',
+  //     channelDescription: 'Notifications from Firebase Cloud Messaging',
+  //     importance: Importance.max,
+  //     priority: Priority.high,
+  //   );
 
-    await _localNotificationsPlugin.show(
-      DateTime.now().millisecondsSinceEpoch ~/ 1000, // Unique ID
-      message.notification?.title,
-      message.notification?.body,
-      const NotificationDetails(android: androidDetails),
-      payload: message.data['route'], // Example payload
-    );
-  }
+  //   await _localNotificationsPlugin.show(
+  //     DateTime.now().millisecondsSinceEpoch ~/ 1000, // Unique ID
+  //     message.notification?.title,
+  //     message.notification?.body,
+  //     const NotificationDetails(android: androidDetails),
+  //     payload: message.data['route'], // Example payload
+  //   );
+  // }
+  static Future<void> _showFirebaseNotification(RemoteMessage message) async {
+  const androidDetails = AndroidNotificationDetails(
+    'fcm_channel',
+    'Cloud Messaging',
+    channelDescription: 'Notifications from Firebase Cloud Messaging',
+    importance: Importance.max,
+    priority: Priority.high,
+  );
+
+  final int id = DateTime.now().millisecondsSinceEpoch ~/ 1000;
+
+  // Save to Hive
+  final notif = ReceivedNotification(
+    id: id,
+    title: message.notification?.title ?? 'No Title',
+    body: message.notification?.body ?? 'No Body',
+    receivedAt: DateTime.now(),
+  );
+  await _receivedBox.put(id, notif);
+
+  await _localNotificationsPlugin.show(
+    id,
+    notif.title,
+    notif.body,
+    const NotificationDetails(android: androidDetails),
+    payload: message.data['route'],
+  );
+}
 
   /// Displays a test notification to verify setup.
   static Future<void> showTestNotification() async {
