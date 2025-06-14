@@ -57,3 +57,32 @@ const List<String> kFunnyNotificationMessages = [
   "🪄 Reminder spell cast successfully. Magic awaits.",
   "🥷 Ninja alert scheduled. Stealth mode ON.",
 ];
+
+const String shareAppText="""👀 Bro, still missing contests and pretending you “didn’t know”?
+Yeah, sure.
+
+Just get this app — ContestHunt.
+It shows all coding contests, hackathons, bug bounty stuff in one place — Codeforces, LeetCode, Devfolio, whatever you’re into.
+
+⏰ Sends reminders so you don’t “forget” and blame timezones again.
+🕒 Contest times are auto-adjusted to IST — like a good friend should be.
+🎯 Also looks clean, runs smooth, and actually helps you get your life together (well, sort of).
+
+Just trust me and try it once: [https://play.google.com/store/apps/details?id=com.miraidyo.contesthunt]
+Unless you like getting late to contests and crying over your rating. 😌
+""";
+
+
+const String dummyFeedback="""Hi ContestHunt Team,
+
+I’ve been using the app for a while and just wanted to share some feedback:
+
+- What I liked: [e.g., clean UI, helpful reminders, supports all major platforms]
+- What could be improved: [e.g., add filters by contest difficulty, dark mode enhancements]
+- Feature I’d love to see: [e.g., add bookmark/save contest option]
+
+Keep up the great work!
+
+Cheers,  
+[Your Name]
+""";

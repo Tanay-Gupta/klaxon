@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:share_plus/share_plus.dart';
+import '../../../../infrastructure/services/url/url_launcher_service.dart';
 import '../../../values/constants.dart';
+import '../../../values/values.dart';
 import 'about_page.dart';
 import 'setting_tile.dart';
 
@@ -14,8 +17,9 @@ class SettingsBody extends StatefulWidget {
 }
 
 class _SettingsBodyState extends State<SettingsBody> {
-  final _darkModeController = ValueNotifier<bool>(true);
-  final _upcomingEventsController = ValueNotifier<bool>(true);
+  final launcher = UrlLauncherService();
+  // final _darkModeController = ValueNotifier<bool>(true);
+  final _upcomingEventsController = ValueNotifier<bool>(false);
   final _newEventsController = ValueNotifier<bool>(false);
 
   @override
@@ -25,42 +29,42 @@ class _SettingsBodyState extends State<SettingsBody> {
       child: ListView(
         physics: const BouncingScrollPhysics(),
         children: [
-          Text('General', style: kHeadingextStyle),
-          const SizedBox(height: 24),
+          // Text('General', style: kHeadingextStyle),
+          // const SizedBox(height: 24),
 
-          SettingTile(
-            title: 'TimeZone',
-            subtitle: 'Select your preferred timezone',
-            trailing: Padding(
-              padding: const EdgeInsets.only(left: 12.0),
-              child: Text(
-                'GMT+5:30',
-                style: kSubheadingtextStyle.copyWith(
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ),
-          ),
+          // SettingTile(
+          //   title: 'TimeZone',
+          //   subtitle: 'Select your preferred timezone',
+          //   trailing: Padding(
+          //     padding: const EdgeInsets.only(left: 12.0),
+          //     child: Text(
+          //       'GMT+5:30',
+          //       style: kSubheadingtextStyle.copyWith(
+          //         fontWeight: FontWeight.w400,
+          //       ),
+          //     ),
+          //   ),
+          // ),
 
-          const SizedBox(height: 24),
+          // const SizedBox(height: 24),
 
-          SettingTile(
-            title: 'Theme',
-            subtitle: 'Dark mode is currently enabled',
-            trailing: Padding(
-              padding: const EdgeInsets.only(left: 12.0),
-              child: AdvancedSwitch(
-                activeColor: kButtonColor,
-                inactiveColor: kNavUnselectedIconColor,
-                controller: _darkModeController,
-                enabled: false,
-                initialValue: true,
-              ),
-            ),
-          ),
-          const SizedBox(height: 16),
-          Divider(color: kNavUnselectedIconColor, thickness: 1),
-          const SizedBox(height: 16),
+          // SettingTile(
+          //   title: 'Theme',
+          //   subtitle: 'Dark mode is currently enabled',
+          //   trailing: Padding(
+          //     padding: const EdgeInsets.only(left: 12.0),
+          //     child: AdvancedSwitch(
+          //       activeColor: kButtonColor,
+          //       inactiveColor: kNavUnselectedIconColor,
+          //       controller: _darkModeController,
+          //       enabled: false,
+          //       initialValue: true,
+          //     ),
+          //   ),
+          // ),
+          // const SizedBox(height: 16),
+          // Divider(color: kNavUnselectedIconColor, thickness: 1),
+          // const SizedBox(height: 16),
           Text('Notifications', style: kHeadingextStyle),
           const SizedBox(height: 24),
 
@@ -70,6 +74,7 @@ class _SettingsBodyState extends State<SettingsBody> {
             trailing: Padding(
               padding: const EdgeInsets.only(left: 12.0),
               child: AdvancedSwitch(
+                initialValue: true,
                 activeColor: kButtonColor,
                 inactiveColor: kNavUnselectedIconColor,
                 controller: _upcomingEventsController,
@@ -88,6 +93,7 @@ class _SettingsBodyState extends State<SettingsBody> {
                 activeColor: kButtonColor,
                 inactiveColor: kNavUnselectedIconColor,
                 controller: _newEventsController,
+                initialValue: true,
               ),
             ),
           ),
@@ -116,11 +122,6 @@ class _SettingsBodyState extends State<SettingsBody> {
           const SizedBox(height: 24),
           InkWell(
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => const AboutPage()),
-              // );
-
               context.push('/about');
             },
             child: SettingTile(
@@ -136,35 +137,56 @@ class _SettingsBodyState extends State<SettingsBody> {
           ),
 
           const SizedBox(height: 20),
-          SettingTile(
-            title: 'Contact Us',
-            subtitle: 'Get in touch with us',
-            trailing: Padding(
-              padding: const EdgeInsets.only(left: 12.0),
-              child: SvgPicture.asset(
-                "assets/icons/settings_page/arrow_right.svg",
+          InkWell(
+            onTap: () async {
+              await launcher.launchEmail(
+                toEmail: 'mail.miraidyo@gmai.com',
+                subject: 'Contact: ContestHunt',
+                body: 'Hey team, please add this new contest platform...',
+              );
+            },
+            child: SettingTile(
+              title: 'Contact Us',
+              subtitle: 'Get in touch with us',
+              trailing: Padding(
+                padding: const EdgeInsets.only(left: 12.0),
+                child: SvgPicture.asset(
+                  "assets/icons/settings_page/arrow_right.svg",
+                ),
               ),
             ),
           ),
           const SizedBox(height: 20),
-          SettingTile(
-            title: 'Rate Us',
-            subtitle: 'Rate us on the Play Store',
-            trailing: Padding(
-              padding: const EdgeInsets.only(left: 12.0),
-              child: SvgPicture.asset(
-                "assets/icons/settings_page/arrow_right.svg",
+          InkWell(
+            onTap: () async {
+              await launcher.launchUrlInBrowser(
+                'https://play.google.com/store/apps/details?id=com.miraidyo.contesthunt',
+              );
+            },
+            child: SettingTile(
+              title: 'Rate Us',
+              subtitle: 'Rate us on the Play Store',
+              trailing: Padding(
+                padding: const EdgeInsets.only(left: 12.0),
+                child: SvgPicture.asset(
+                  "assets/icons/settings_page/arrow_right.svg",
+                ),
               ),
             ),
           ),
           const SizedBox(height: 20),
-          SettingTile(
-            title: 'Share',
-            subtitle: 'Share Klaxon with your friends',
-            trailing: Padding(
-              padding: const EdgeInsets.only(left: 12.0),
-              child: SvgPicture.asset(
-                "assets/icons/settings_page/arrow_right.svg",
+          InkWell(
+            onTap: () {
+              SharePlus.instance.share(ShareParams(text: shareAppText.trim()));
+            },
+            child: SettingTile(
+              title: 'Share',
+              subtitle: 'Share ContestHunt with your friends',
+              trailing: Padding(
+                padding: const EdgeInsets.only(left: 12.0),
+                child: SvgPicture.asset(
+                  "assets/icons/settings_page/arrow_right.svg",
+                ),
               ),
             ),
           ),
