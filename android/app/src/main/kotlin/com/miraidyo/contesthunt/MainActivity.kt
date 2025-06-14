@@ -1,4 +1,4 @@
-package com.example.klaxon
+package com.miraidyo.contesthunt
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,5 +1,3 @@
-
-
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -42,7 +40,7 @@ class NotificationService {
     _configureFirebaseListeners();
     // It's good practice to request exact alarm permissions when the app starts
     // or before the user first schedules a notification.
-    await requestExactAlarmPermission();
+    // await requestExactAlarmPermission();
   }
 
   /// Initializes timezone data for scheduled notifications.
@@ -174,7 +172,6 @@ class NotificationService {
       return false;
     }
 
-    
     const androidDetails = AndroidNotificationDetails(
       'scheduled_channel',
       'Scheduled Reminders',

@@ -7,7 +7,7 @@
     
 
     <application
-        android:label="klaxon"
+        android:label="ContestHunt"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

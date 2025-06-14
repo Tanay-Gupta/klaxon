@@ -23,7 +23,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -47,28 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAVZswkh3KFK38fpsdZACF6lSv_uSCYxHA',
-    appId: '1:109957066564:web:8e2525fd3dd8db989c3111',
-    messagingSenderId: '109957066564',
-    projectId: 'algohunt',
-    authDomain: 'algohunt.firebaseapp.com',
-    storageBucket: 'algohunt.appspot.com',
+    apiKey: 'AIzaSyD9oG9wEsOz45bGR9GKt7IhC_3BlY7Bl-s',
+    appId: '1:623547842674:web:9f516b4e86415b0648c2eb',
+    messagingSenderId: '623547842674',
+    projectId: 'contesthunt-miraidyo',
+    authDomain: 'contesthunt-miraidyo.firebaseapp.com',
+    storageBucket: 'contesthunt-miraidyo.firebasestorage.app',
+    measurementId: 'G-PPLFLHZBTN',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDdefnRVYhUkwFsvIo5okZxEOHSBSfnxO4',
-    appId: '1:109957066564:android:e0e89054f5e141279c3111',
-    messagingSenderId: '109957066564',
-    projectId: 'algohunt',
-    storageBucket: 'algohunt.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCp9ZhCNNqG57Vy3mr39bz2zCA5LIygnUk',
-    appId: '1:109957066564:ios:e29cd11e4e0129df9c3111',
-    messagingSenderId: '109957066564',
-    projectId: 'algohunt',
-    storageBucket: 'algohunt.appspot.com',
-    iosBundleId: 'com.example.algohunt',
+    apiKey: 'AIzaSyD_VnagTbfoTsOuDinT8kdIRlzpAXYjg58',
+    appId: '1:623547842674:android:fc5bda41b372846348c2eb',
+    messagingSenderId: '623547842674',
+    projectId: 'contesthunt-miraidyo',
+    storageBucket: 'contesthunt-miraidyo.firebasestorage.app',
   );
 }
