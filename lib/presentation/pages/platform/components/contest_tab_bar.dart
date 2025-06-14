@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../values/constants.dart';
+import '../../../values/values.dart';
 
 class ContestTabBar extends StatelessWidget {
   final double width;
@@ -33,10 +35,7 @@ class ContestTabBar extends StatelessWidget {
             text: 'Upcoming',
             // icon: Icon(Icons.currency_rupee, size: 15),
           ),
-          const Tab(
-            text: 'Live',
-            //icon: Icon(Icons.money_off_outlined, size: 15),
-          ),
+          Tab(text: 'Live', icon: Lottie.asset(livePulseAnimation, height: 15)),
         ],
       ),
     );

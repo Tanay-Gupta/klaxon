@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../infrastructure/models/platform_model.dart';
+import '../../../infrastructure/services/url/url_launcher_service.dart';
 import '../../values/constants.dart';
+import '../../values/platform_master.dart';
 import 'components/body.dart';
 
 class PlatformDetailPage extends StatelessWidget {
@@ -11,6 +13,7 @@ class PlatformDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     final launcher = UrlLauncherService();
     return Scaffold(
       backgroundColor: kBackgroundColor,
 
@@ -25,13 +28,15 @@ class PlatformDetailPage extends StatelessWidget {
         elevation: 0,
         actions: [
           IconButton(
+            tooltip: "Launch Site",
             icon: Image.asset(
               'assets/icons/visitSite.png',
               width: 50,
               height: 50,
             ),
-            onPressed: () {
-              // Handle notification button press
+            onPressed: () async{
+              // Handle notification button press platformURLs[]
+              await launcher.launchUrlInBrowser(platformURLs[platformName]??"");
             },
           ),
         ],
