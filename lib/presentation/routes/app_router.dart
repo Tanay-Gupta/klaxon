@@ -10,109 +10,17 @@ import 'package:klaxon/presentation/pages/bounty/bounty_page.dart';
 import 'package:klaxon/presentation/pages/settings/settings_page.dart';
 import 'package:klaxon/presentation/pages/errors/no_connection_screen.dart';
 import 'package:klaxon/presentation/pages/errors/under_maintenance_screen.dart';
-import 'package:klaxon/presentation/pages/notifications/empty_notifications_screen.dart';
 import 'package:klaxon/presentation/pages/platform/platform_detail_page.dart';
 
 import '../../infrastructure/models/contest_model.dart';
 import '../../infrastructure/models/platform_model.dart';
 import '../pages/bountyDetail/bounty_detail_page.dart';
-import '../pages/bountyDetail/components/body.dart';
 import '../pages/contestDetail/contest_detail_page.dart';
 import '../pages/hackathonDetail/hackathon_detail_page.dart';
 import '../pages/notifications/NotificationCenterScreen.dart';
 import '../pages/notifications/scheduled_notifications_page.dart';
 import '../pages/settings/components/about_page.dart';
 
-// final GoRouter router = GoRouter(
-//   initialLocation: '/',
-//   routes: [
-//     GoRoute(
-//       path: '/',
-//       builder: (context, state) => const Home(),
-//       routes: [
-//         GoRoute(
-//           path: 'explore',
-//           builder: (context, state) => HomePage(onNavigateToTab: (_) {}),
-//         ),
-//         GoRoute(
-//           path: 'contests',
-//           builder: (context, state) => const ContestPage(),
-//         ),
-//         GoRoute(
-//           path: 'hackathons',
-//           builder: (context, state) => const HackathonPage(),
-//         ),
-//         GoRoute(
-//           path: 'bounty',
-//           builder: (context, state) => const BountyPage(),
-//         ),
-//         GoRoute(
-//           path: 'settings',
-//           builder: (context, state) => const SettingsPage(),
-//         ),
-//       ],
-//     ),
-//     GoRoute(
-//       path: '/notifications',
-//       pageBuilder:
-//           (context, state) => buildCustomTransitionPage(
-//             key: state.pageKey,
-//             child: const EmptyNotificationsScreen(),
-//           ),
-//     ),
-//     GoRoute(
-//       path: '/platform',
-//       pageBuilder: (context, state) {
-//         final args = state.extra as Map<String, dynamic>?;
-
-//         final platformName = args?['platformName'] as String? ?? 'error';
-//         final platformType =
-//             args?['platformType'] as PlatformType? ?? PlatformType.contest;
-
-//         return buildCustomTransitionPage(
-//           key: state.pageKey,
-//           child: PlatformDetailPage(
-//             platformName: platformName,
-//             platformType: platformType,
-//           ),
-//         );
-//       },
-//     ),
-
-//     GoRoute(
-//       path: '/no_connection',
-//       builder: (context, state) => const NoConnectionScreen(),
-//     ),
-//     GoRoute(
-//       path: '/under_maintenance',
-//       builder: (context, state) => const UnderMaintenanceScreen(),
-//     ),
-//     GoRoute(
-//       path: '/contestdetail',
-//       builder: (context, state) {
-//         final contest = state.extra as ContestModel;
-//         return ContestDetailPage(contest: contest);
-//       },
-//     ),
-//     GoRoute(
-//       path: '/hackathondetail',
-//       builder: (context, state) {
-//         final contest = state.extra as HackathonModel;
-//         return HackathonDetailPage(contest: contest);
-//       },
-//     ),
-//     GoRoute(
-//       path: '/bountydetail',
-//       builder: (context, state) {
-//         final contest = state.extra as BountyModel;
-//         return BountyDetailBody(contest: contest);
-//       },
-//     ),
-//   ],
-//   errorBuilder:
-//       (context, state) =>
-//           const Scaffold(body: Center(child: Text("404 - Page not found"))),
-// );
 
 CustomTransitionPage<dynamic> buildCustomTransitionPage({
   required LocalKey key,

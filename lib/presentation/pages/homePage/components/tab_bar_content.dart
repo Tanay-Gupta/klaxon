@@ -1,52 +1,3 @@
-// import 'package:flutter/material.dart';
-// import '../../../values/dummy_data.dart';
-// import '../../homePage/components/listcontainer.dart';
-// // Make sure your dummyData is in this path
-
-// class TabBarContent extends StatelessWidget {
-//   const TabBarContent({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return TabBarView(
-//       physics: const BouncingScrollPhysics(),
-//       children: [
-//         _buildContestList(isUpcoming: false),
-//         _buildContestList(isUpcoming: true),
-//       ],
-//     );
-//   }
-
-//   Widget _buildContestList({required bool isUpcoming}) {
-//     final contests =
-//         dummyData.where((contest) => contest.isUpcoming == isUpcoming).toList();
-
-//     return ListView.builder(
-//       physics: const ScrollPhysics(parent: NeverScrollableScrollPhysics()),
-//       itemCount: 3,
-//       itemBuilder: (context, index) {
-//         final contest = contests[index];
-//         return ListContainer( 
-//           //  durationInHr: contest.durationInHr.toString(),
-//           startTime: contest.startTime.toIso8601String(),
-//           endTime: contest.endTime.toString(),
-//           imgUrl: contest.imgUrl,
-//           contestUrl: contest.contestUrl,
-//           title: contest.title,
-//           //  isDone: contest.isDone,
-//           isUpcoming: contest.isUpcoming,
-//           onContainerTap: () {
-//             print('Tapped on contest: ${contest.title}');
-//           },
-//           onShareTap: () {
-//             // Implement share functionality here
-//             print('Share tapped for contest: ${contest.title}');
-//           },
-//         );
-//       },
-//     );
-//   }
-// }
 import 'package:flutter/material.dart';
 
 import '../../../../infrastructure/models/contest_model.dart';
@@ -89,8 +40,7 @@ class _TabBarContentState extends State<TabBarContent> {
     return FutureBuilder<List<ContestModel>>(
       future: _futureContests,
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting &&
-            !_isRefreshing) {
+        if (snapshot.connectionState == ConnectionState.waiting && !_isRefreshing) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
@@ -108,21 +58,27 @@ class _TabBarContentState extends State<TabBarContent> {
           );
         } else {
           final contests = snapshot.data!;
-          final upcoming =
-              contests
-                  .where(
-                    (e) =>
-                        e.startTime != null &&
-                        (DateTime.fromMillisecondsSinceEpoch(
-                          e.startTime! * 1000,
-                        ).isAfter(DateTime.now())),
-                  )
-                  .toList();
-          final ongoing = contests.where((e) => !upcoming.contains(e)).toList();
+          final upcoming = contests
+              .where(
+                (e) =>
+                    e.startTime != null &&
+                    DateTime.fromMillisecondsSinceEpoch(e.startTime! * 1000)
+                        .isAfter(DateTime.now()),
+              )
+              .take(3)
+              .toList();
+
+          final ongoing = contests
+              .where((e) => !upcoming.contains(e))
+              .take(3)
+              .toList();
 
           return TabBarView(
             physics: const BouncingScrollPhysics(),
-            children: [_buildContestList(ongoing), _buildContestList(upcoming)],
+            children: [
+              _buildContestList(ongoing),
+              _buildContestList(upcoming),
+            ],
           );
         }
       },
@@ -133,8 +89,8 @@ class _TabBarContentState extends State<TabBarContent> {
     return RefreshIndicator(
       onRefresh: _refreshData,
       child: ListView.builder(
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: 3,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: contests.length,
         itemBuilder: (context, index) {
           final contest = contests[index];
           return ContestListContainer(
@@ -144,7 +100,6 @@ class _TabBarContentState extends State<TabBarContent> {
             isUpcoming: DateTime.fromMillisecondsSinceEpoch(
               contest.startTime! * 1000,
             ).isAfter(DateTime.now()),
-            
           );
         },
       ),

@@ -3,6 +3,7 @@ import '../../../../infrastructure/models/bounty_model.dart';
 import '../../../values/constants.dart';
 import '../../../widgets/bounty_card.dart';
 import '../../../widgets/trending_bounty.dart';
+import '../../../widgets/trending_hackathon.dart';
 import '../../homePage/components/contest_tab_bar.dart';
 import 'tab_bar_content.dart';
 import 'trendingAlert.dart';
@@ -45,7 +46,7 @@ class _HomeBodyState extends State<HomeBody> {
                   ContestTabBar(width: width),
                   const SizedBox(height: 16),
                   SizedBox(
-                    height: 230, // You can tune this height as needed
+                    height: 240, // You can tune this height as needed
                     child: const TabBarContent(),
                   ),
                 ],
@@ -60,7 +61,7 @@ class _HomeBodyState extends State<HomeBody> {
             "Hackathons",
             onTap: () => widget.onNavigateToTab?.call(2),
           ), // Go to Hackathons tab
-          trendingAlertCarouselSlider(context),
+          TrendingHackathonCarousel(),
 
           const SizedBox(height: 24),
 
