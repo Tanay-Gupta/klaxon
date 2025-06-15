@@ -14,12 +14,12 @@ class TrendingBountyCarousel extends StatefulWidget {
 }
 
 class _TrendingBountyCarouselState extends State<TrendingBountyCarousel> {
-  late Future<List<BountyModel>> _bountiesFuture;
+  static Future<List<BountyModel>>? _cachedBountiesFuture;
 
   @override
   void initState() {
     super.initState();
-    _bountiesFuture = ContestHuntApi().fetchBounties();
+    _cachedBountiesFuture ??= ContestHuntApi().fetchBounties(); // cache once
   }
 
   @override
@@ -30,7 +30,7 @@ class _TrendingBountyCarouselState extends State<TrendingBountyCarousel> {
     return SizedBox(
       height: carouselHeight,
       child: FutureBuilder<List<BountyModel>>(
-        future: _bountiesFuture,
+        future: _cachedBountiesFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -40,14 +40,10 @@ class _TrendingBountyCarouselState extends State<TrendingBountyCarousel> {
             return const Center(child: Text("Failed to load bounties"));
           }
 
-          // Filter: amount > 0
-          final trending =
-              snapshot.data!
-                  .where(
-                    (bounty) => bounty.amount != null && bounty.amount! > 0,
-                  )
-                  .take(5) // Ensure max of 5 bounties
-                  .toList();
+          final trending = snapshot.data!
+              .where((bounty) => bounty.amount != null && bounty.amount! > 0)
+              .take(5)
+              .toList();
 
           if (trending.isEmpty) {
             return const Center(child: Text("No trending bounties found"));
@@ -67,17 +63,13 @@ class _TrendingBountyCarouselState extends State<TrendingBountyCarousel> {
               scrollDirection: Axis.horizontal,
             ),
             itemCount: trending.length,
-            itemBuilder: (BuildContext context, int itemIndex, int _) {
-              final bounty = trending[itemIndex];
-
+            itemBuilder: (context, index, _) {
+              final bounty = trending[index];
               return GestureDetector(
-                onTap: () {
-                  
-                  context.push('/bountydetail', extra: bounty);
-                },
+                onTap: () => context.push('/bountydetail', extra: bounty),
                 child: BountyCard(
                   bounty: bounty,
-                  index: itemIndex,
+                  index: index,
                   height: carouselHeight,
                 ),
               );

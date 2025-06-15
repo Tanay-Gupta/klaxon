@@ -11,7 +11,6 @@ import '../../../widgets/bounty_list_container.dart';
 import '../../../widgets/contest_list_container.dart';
 import '../../../widgets/hackathon_list_container.dart';
 import '../../homePage/components/listcontainer.dart';
-// Make sure your dummyData is in this path
 
 class TabBarContent extends StatefulWidget {
   final String platformName;
@@ -31,14 +30,30 @@ class _TabBarContentState extends State<TabBarContent> {
   bool _isRefreshing = false;
   final ContestHuntApi _contestHuntApi = ContestHuntApi();
 
+  // In-memory cache: key -> platformType:platformName
+  static final Map<String, List<dynamic>> _cache = {};
+
   @override
   void initState() {
     super.initState();
-    // _futureContests = _contestHuntApi.fetchContests(platform: widget.platformName);
-    _futureData = getPlatformDataFuture();
+    _futureData = _getPlatformDataWithCache();
   }
 
-  Future<List<dynamic>> getPlatformDataFuture() {
+  String _cacheKey() =>
+      '${widget.platformType.toString()}:${widget.platformName}';
+
+  Future<List<dynamic>> _getPlatformDataWithCache() async {
+    final key = _cacheKey();
+    if (_cache.containsKey(key) && !_isRefreshing) {
+      return _cache[key]!;
+    }
+
+    final fetchedData = await _fetchByPlatformType();
+    _cache[key] = fetchedData;
+    return fetchedData;
+  }
+
+  Future<List<dynamic>> _fetchByPlatformType() {
     switch (widget.platformType) {
       case PlatformType.contest:
         return _contestHuntApi.fetchContests(platform: widget.platformName);
@@ -52,7 +67,7 @@ class _TabBarContentState extends State<TabBarContent> {
   Future<void> _refreshData() async {
     setState(() {
       _isRefreshing = true;
-      _futureData = getPlatformDataFuture();
+      _futureData = _getPlatformDataWithCache();
     });
     await _futureData;
     setState(() {
@@ -84,17 +99,17 @@ class _TabBarContentState extends State<TabBarContent> {
           );
         } else {
           final contests = snapshot.data!;
-          final upcoming =
-              contests
-                  .where(
-                    (e) =>
-                        e.startTime != null &&
-                        (DateTime.fromMillisecondsSinceEpoch(
-                          e.startTime! * 1000,
-                        ).isAfter(DateTime.now())),
-                  )
-                  .toList();
-          final ongoing = contests.where((e) => !upcoming.contains(e)).toList();
+          final upcoming = contests
+              .where(
+                (e) =>
+                    e.startTime != null &&
+                    (DateTime.fromMillisecondsSinceEpoch(
+                      e.startTime! * 1000,
+                    ).isAfter(DateTime.now())),
+              )
+              .toList();
+          final ongoing =
+              contests.where((e) => !upcoming.contains(e)).toList();
 
           return TabBarView(
             physics: const BouncingScrollPhysics(),
@@ -112,55 +127,53 @@ class _TabBarContentState extends State<TabBarContent> {
     return RefreshIndicator(
       onRefresh: _refreshData,
       child: contests.isEmpty
-                  ? ListView(
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    children: const [
-                      Center(
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 100),
-                          child: Text(noDataFound, style: kH1textStyle),
-                        ),
-                      ),
-                    ],
-                  )
-                  : ListView.builder(
-        physics: const BouncingScrollPhysics(),
-        itemCount: contests.length,
-        itemBuilder: (context, index) {
-          final contest = contests[index];
-          if (platformType == PlatformType.contest) {
-            ContestModel temp = contest;
-            return ContestListContainer(
-              contestModel: temp,
-              imgPath: platformLogos[contest.platform] ?? '',
-              isUpcoming: DateTime.fromMillisecondsSinceEpoch(
-                contest.startTime! * 1000,
-              ).isAfter(DateTime.now()),
-            );
-          } else if (platformType == PlatformType.hackathon) {
-            HackathonModel temp = contest;
-            return HackathonListContainer(
-              hackathonModel: temp,
-              imgPath: platformLogos[contest.platform] ?? '',
-              isUpcoming: DateTime.fromMillisecondsSinceEpoch(
-                contest.startTime! * 1000,
-              ).isAfter(DateTime.now()),
-            );
-          }
-          // If it's a bounty, return a bounty list container
-          BountyModel bountyModel = contest;
-          return BountyListContainer(
-            bountyModel: bountyModel,
-            imgPath:
-                platformLogos[contest.platform] ??
-                '', // Backup URL if not found
+          ? ListView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              children: const [
+                Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 100),
+                    child: Text(noDataFound, style: kH1textStyle),
+                  ),
+                ),
+              ],
+            )
+          : ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              itemCount: contests.length,
+              itemBuilder: (context, index) {
+                final contest = contests[index];
 
-            isUpcoming: DateTime.fromMillisecondsSinceEpoch(
-              contest.startTime! * 1000,
-            ).isAfter(DateTime.now()),
-          );
-        },
-      ),
+                if (platformType == PlatformType.contest) {
+                  ContestModel temp = contest;
+                  return ContestListContainer(
+                    contestModel: temp,
+                    imgPath: platformLogos[contest.platform] ?? '',
+                    isUpcoming: DateTime.fromMillisecondsSinceEpoch(
+                      contest.startTime! * 1000,
+                    ).isAfter(DateTime.now()),
+                  );
+                } else if (platformType == PlatformType.hackathon) {
+                  HackathonModel temp = contest;
+                  return HackathonListContainer(
+                    hackathonModel: temp,
+                    imgPath: platformLogos[contest.platform] ?? '',
+                    isUpcoming: DateTime.fromMillisecondsSinceEpoch(
+                      contest.startTime! * 1000,
+                    ).isAfter(DateTime.now()),
+                  );
+                }
+
+                BountyModel bountyModel = contest;
+                return BountyListContainer(
+                  bountyModel: bountyModel,
+                  imgPath: platformLogos[contest.platform] ?? '',
+                  isUpcoming: DateTime.fromMillisecondsSinceEpoch(
+                    contest.startTime! * 1000,
+                  ).isAfter(DateTime.now()),
+                );
+              },
+            ),
     );
   }
 }

@@ -14,22 +14,22 @@ class TabBarContent extends StatefulWidget {
 }
 
 class _TabBarContentState extends State<TabBarContent> {
-  late Future<List<ContestModel>> _futureContests;
+  static Future<List<ContestModel>>? _cachedFutureContests;
   bool _isRefreshing = false;
   final ContestHuntApi _contestHuntApi = ContestHuntApi();
 
   @override
   void initState() {
     super.initState();
-    _futureContests = _contestHuntApi.fetchContests();
+    _cachedFutureContests ??= _contestHuntApi.fetchContests();
   }
 
   Future<void> _refreshData() async {
     setState(() {
       _isRefreshing = true;
-      _futureContests = _contestHuntApi.fetchContests();
+      _cachedFutureContests = _contestHuntApi.fetchContests();
     });
-    await _futureContests;
+    await _cachedFutureContests;
     setState(() {
       _isRefreshing = false;
     });
@@ -38,10 +38,9 @@ class _TabBarContentState extends State<TabBarContent> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<ContestModel>>(
-      future: _futureContests,
+      future: _cachedFutureContests,
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting &&
-            !_isRefreshing) {
+        if (snapshot.connectionState == ConnectionState.waiting && !_isRefreshing) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
@@ -59,16 +58,12 @@ class _TabBarContentState extends State<TabBarContent> {
           );
         } else {
           final contests = snapshot.data!;
-          final upcoming =
-              contests
-                  .where(
-                    (e) =>
-                        e.startTime != null &&
-                        (DateTime.fromMillisecondsSinceEpoch(
-                          e.startTime! * 1000,
-                        ).isAfter(DateTime.now())),
-                  )
-                  .toList();
+          final upcoming = contests.where((e) {
+            final start = e.startTime;
+            if (start == null) return false;
+            return DateTime.fromMillisecondsSinceEpoch(start * 1000).isAfter(DateTime.now());
+          }).toList();
+
           final ongoing = contests.where((e) => !upcoming.contains(e)).toList();
 
           return TabBarView(
@@ -88,13 +83,14 @@ class _TabBarContentState extends State<TabBarContent> {
         itemCount: contests.length,
         itemBuilder: (context, index) {
           final contest = contests[index];
+          final isUpcoming = DateTime.fromMillisecondsSinceEpoch(
+            contest.startTime! * 1000,
+          ).isAfter(DateTime.now());
+
           return ContestListContainer(
             contestModel: contest,
             imgPath: platformLogos[contest.platform] ?? '',
-            isUpcoming: DateTime.fromMillisecondsSinceEpoch(
-              contest.startTime! * 1000,
-            ).isAfter(DateTime.now()),
-            
+            isUpcoming: isUpcoming,
           );
         },
       ),

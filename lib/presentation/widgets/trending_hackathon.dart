@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:go_router/go_router.dart';
+
 import 'package:klaxon/infrastructure/models/hackathon_model.dart';
 import 'package:klaxon/presentation/widgets/hackathon_card.dart';
-
 import '../../infrastructure/services/api/api_service.dart';
 
 class TrendingHackathonCarousel extends StatefulWidget {
   const TrendingHackathonCarousel({super.key});
 
   @override
-  State<TrendingHackathonCarousel> createState() =>
-      _TrendingBountyCarouselState();
+  State<TrendingHackathonCarousel> createState() => _TrendingHackathonCarouselState();
 }
 
-class _TrendingBountyCarouselState extends State<TrendingHackathonCarousel> {
-  late Future<List<HackathonModel>> _bountiesFuture;
+class _TrendingHackathonCarouselState extends State<TrendingHackathonCarousel> {
+  static Future<List<HackathonModel>>? _cachedHackathonsFuture;
 
   @override
   void initState() {
     super.initState();
-    _bountiesFuture = ContestHuntApi().fetchHackathons();
+    _cachedHackathonsFuture ??= ContestHuntApi().fetchHackathons();
   }
 
   @override
@@ -31,7 +30,7 @@ class _TrendingBountyCarouselState extends State<TrendingHackathonCarousel> {
     return SizedBox(
       height: carouselHeight,
       child: FutureBuilder<List<HackathonModel>>(
-        future: _bountiesFuture,
+        future: _cachedHackathonsFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -41,11 +40,9 @@ class _TrendingBountyCarouselState extends State<TrendingHackathonCarousel> {
             return const Center(child: Text("Failed to load hackathon"));
           }
 
-          // Filter: amount > 0
-          final trending =
-              snapshot.data!
-                  .take(5) // Ensure max of 5 bounties
-                  .toList();
+          final trending = snapshot.data!
+              .take(5)
+              .toList();
 
           if (trending.isEmpty) {
             return const Center(child: Text("No trending hackathon found"));
@@ -69,9 +66,7 @@ class _TrendingBountyCarouselState extends State<TrendingHackathonCarousel> {
               final hackathon = trending[itemIndex];
 
               return GestureDetector(
-                onTap: () {
-                  context.push('/hackathondetail', extra: hackathon);
-                },
+                onTap: () => context.push('/hackathondetail', extra: hackathon),
                 child: HackathonCard(
                   bounty: hackathon,
                   index: itemIndex,

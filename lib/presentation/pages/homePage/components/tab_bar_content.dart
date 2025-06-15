@@ -14,22 +14,22 @@ class TabBarContent extends StatefulWidget {
 }
 
 class _TabBarContentState extends State<TabBarContent> {
-  late Future<List<ContestModel>> _futureContests;
+  static Future<List<ContestModel>>? _cachedFuture;
   bool _isRefreshing = false;
   final ContestHuntApi _contestHuntApi = ContestHuntApi();
 
   @override
   void initState() {
     super.initState();
-    _futureContests = _contestHuntApi.fetchContests();
+    _cachedFuture ??= _contestHuntApi.fetchContests(); // Only fetch once
   }
 
   Future<void> _refreshData() async {
     setState(() {
       _isRefreshing = true;
-      _futureContests = _contestHuntApi.fetchContests();
+      _cachedFuture = _contestHuntApi.fetchContests(); // Re-fetch
     });
-    await _futureContests;
+    await _cachedFuture;
     setState(() {
       _isRefreshing = false;
     });
@@ -38,7 +38,7 @@ class _TabBarContentState extends State<TabBarContent> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<ContestModel>>(
-      future: _futureContests,
+      future: _cachedFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting && !_isRefreshing) {
           return const Center(child: CircularProgressIndicator());
