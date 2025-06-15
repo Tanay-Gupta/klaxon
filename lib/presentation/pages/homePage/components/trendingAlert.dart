@@ -11,7 +11,7 @@ Widget trendingAlertCarouselSlider(BuildContext context) {
     height: carouselHeight,
     child: CarouselSlider.builder(
       options: CarouselOptions(
-        height: carouselHeight - 20,
+        height: carouselHeight - 10,
         aspectRatio: 16 / 9,
         viewportFraction: 0.9,
         initialPage: 0,
@@ -22,7 +22,7 @@ Widget trendingAlertCarouselSlider(BuildContext context) {
         autoPlayCurve: Curves.fastOutSlowIn,
         scrollDirection: Axis.horizontal,
       ),
-      itemCount: 9, // You can make this dynamic
+      itemCount: 5, // You can make this dynamic
       itemBuilder: (BuildContext context, int itemIndex, int _) {
         return GestureDetector(
           onTap: () {
@@ -52,7 +52,7 @@ Widget trendingAlertCarouselSlider(BuildContext context) {
                 'assets/testImages/${itemIndex + 1}.png', // Use dynamic index
                 fit: BoxFit.cover,
                 width: double.infinity,
-                height: carouselHeight - 20,
+                height: carouselHeight - 10,
               ),
             ),
           ),

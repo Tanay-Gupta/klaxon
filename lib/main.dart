@@ -8,10 +8,12 @@ import 'package:path_provider/path_provider.dart';
 import 'app.dart';
 import 'firebase_options.dart';
 import 'infrastructure/models/received_notification.dart';
+import 'infrastructure/services/api/remote_config.dart';
 import 'infrastructure/services/notifications/notification_services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   final appDocumentDir = await getApplicationDocumentsDirectory();
@@ -20,6 +22,7 @@ Future<void> main() async {
   await Hive.openBox<ScheduledNotification>('scheduled_notifications');
   Hive.registerAdapter(ReceivedNotificationAdapter());
   await Hive.openBox<ReceivedNotification>('received_notifications');
+  await RemoteConfigService().initialize();
 
   // notificationService.getDeviceToken().then((value) {
   //   print('Device Token: $value');

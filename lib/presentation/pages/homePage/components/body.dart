@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../infrastructure/models/bounty_model.dart';
+import '../../../../infrastructure/services/api/remote_config.dart';
 import '../../../values/constants.dart';
 import '../../../widgets/bounty_card.dart';
 import '../../../widgets/trending_bounty.dart';
@@ -20,6 +21,8 @@ class HomeBody extends StatefulWidget {
 class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
+    final apiUrl = RemoteConfigService().baseAPI;
+
     final width = MediaQuery.of(context).size.width;
 
     return SingleChildScrollView(
