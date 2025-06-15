@@ -56,6 +56,8 @@ Widget trendingAlertCarouselSlider(BuildContext context) {
               ),
             ),
           ),
+        
+        
         );
       },
     ),
