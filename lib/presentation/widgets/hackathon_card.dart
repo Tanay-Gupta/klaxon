@@ -36,7 +36,7 @@ class HackathonCard extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/testImages/bbg${index + 1}.png'),
+                  image: AssetImage('assets/testImages/hbg${index + 1}.png'),
                   fit: BoxFit.cover,
                 ),
               ),
